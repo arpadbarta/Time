@@ -18,13 +18,12 @@
         d:DataContext="{d:DesignInstance {x:Type viewModels:MainViewModel}}">
 
     <Border CornerRadius="{Binding CornerRadius, Converter={StaticResource DoubleToCornerRadiusConverter}}">
+        <Border.Background>
+            <SolidColorBrush Color="{Binding Background}"
+                             Opacity="{Binding Opacity}" />
+        </Border.Background>
 
         <Grid>
-
-            <Grid.Background>
-                <SolidColorBrush Color="{Binding Background}"
-                                 Opacity="{Binding Opacity}" />
-            </Grid.Background>
 
             <Viewbox>
                 <Grid Margin="8">
