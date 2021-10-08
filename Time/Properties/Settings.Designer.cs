@@ -133,7 +133,7 @@ namespace Time.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-984833")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-16777216")]
         public int Background {
             get {
                 return ((int)(this["Background"]));
@@ -145,7 +145,7 @@ namespace Time.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-16777216")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-984833")]
         public int Foreground {
             get {
                 return ((int)(this["Foreground"]));

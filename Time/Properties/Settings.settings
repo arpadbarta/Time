@@ -30,10 +30,10 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="Background" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">-984833</Value>
+      <Value Profile="(Default)">-16777216</Value>
     </Setting>
     <Setting Name="Foreground" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">-16777216</Value>
+      <Value Profile="(Default)">-984833</Value>
     </Setting>
     <Setting Name="ShowInTaskbar" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
