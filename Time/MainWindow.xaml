@@ -14,10 +14,10 @@
         Topmost="True"
         Height="120"
         Width="160"
+        Cursor="SizeAll"
         d:DataContext="{d:DesignInstance {x:Type viewModels:MainViewModel}}">
 
-    <Border Cursor="SizeAll"
-            CornerRadius="{Binding CornerRadius, Converter={StaticResource DoubleToCornerRadiusConverter}}">
+    <Border CornerRadius="{Binding CornerRadius, Converter={StaticResource DoubleToCornerRadiusConverter}}">
 
         <Grid>
 
