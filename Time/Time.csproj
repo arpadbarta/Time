@@ -10,6 +10,7 @@
     <Authors>AB</Authors>
     <Company>AB Dev</Company>
     <Description>Just shows the time and date. That is all.</Description>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
