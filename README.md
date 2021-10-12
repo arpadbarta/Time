@@ -12,6 +12,13 @@
 </p>
 
 <p align="center">
+    <a href="https://www.microsoft.com/store/apps/9P18LR2748CN" target="_blank">
+        <img width="200" align="center" src="https://getbadgecdn.azureedge.net/images/English_L.png" >
+    </a>
+</p>
+
+
+<p align="center">
     <img  align="center" src="sample/demo.gif" >
 </p>
 
