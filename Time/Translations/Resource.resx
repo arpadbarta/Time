@@ -132,6 +132,9 @@
   <data name="CornerRadiusLabel" xml:space="preserve">
     <value>Corner radius of the window.</value>
   </data>
+  <data name="FontLabel" xml:space="preserve">
+    <value>Font</value>
+  </data>
   <data name="ForegroundColorLabel" xml:space="preserve">
     <value>Color of text.</value>
   </data>

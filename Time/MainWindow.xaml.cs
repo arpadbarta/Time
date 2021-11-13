@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media;
 using Time.Properties;
@@ -27,6 +28,7 @@ namespace Time
             Settings.Default.CornerRadius = context.CornerRadius;
             Settings.Default.Background = System.Drawing.Color.FromArgb(255, context.Background.R, context.Background.G, context.Background.B).ToArgb();
             Settings.Default.Foreground = System.Drawing.Color.FromArgb(255, context.Foreground.R, context.Foreground.G, context.Foreground.B).ToArgb();
+            Settings.Default.FontFamily = context.FontFamily.ToString();
 
             Settings.Default.AllowResize = context.AllowResize;
             Settings.Default.ShowInTaskbar = context.ShowInTaskbar;
@@ -72,6 +74,8 @@ namespace Time
 
             var background = System.Drawing.Color.FromArgb(Settings.Default.Background);
             context.Background = Color.FromRgb(background.R, background.G, background.B);
+
+            context.FontFamily = context.FontCollection.FirstOrDefault(x => x.ToString() == (Settings.Default.FontFamily ?? FontFamily.ToString()));
 
             Left = Settings.Default.Left;
             Top = Settings.Default.Top;

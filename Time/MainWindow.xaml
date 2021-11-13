@@ -35,12 +35,14 @@
 
                     <TextBlock Text="{Binding Time}"
                                Foreground="{Binding Foreground, Converter={StaticResource ColorToBrushConverter}}"
+                               FontFamily="{Binding FontFamily}"
                                FontSize="24"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center" />
 
                     <TextBlock Text="{Binding Date}"
                                Foreground="{Binding Foreground, Converter={StaticResource ColorToBrushConverter}}"
+                               FontFamily="{Binding FontFamily}"
                                FontSize="12"
                                Grid.Row="1"
                                HorizontalAlignment="Center"
@@ -70,6 +72,19 @@
                                 <Rectangle Width="200"
                                            Height="20"
                                            Fill="{Binding ., Converter={StaticResource ColorToBrushConverter}}" />
+                            </DataTemplate>
+
+                            <DataTemplate DataType="{x:Type FontFamily}">
+                                <TextBlock Width="200"
+                                           Height="20"
+                                           FontSize="16"
+                                           Foreground="Black"
+                                           Background="White"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           TextAlignment="Center"
+                                           Text="{Binding}"
+                                           FontFamily="{ Binding }"/>
                             </DataTemplate>
 
                             <ItemsPanelTemplate x:Key="PanelTemplate">
@@ -128,6 +143,13 @@
                         <ComboBox ItemsSource="{Binding Colors}"
                                   SelectedItem="{Binding Foreground}"
                                   ItemTemplate="{StaticResource BrushTemplate}"
+                                  ItemsPanel="{StaticResource PanelTemplate}"
+                                  HorizontalAlignment="Stretch" />
+
+                        <TextBlock Text="{x:Static translations:Resource.FontLabel}" />
+
+                        <ComboBox ItemsSource="{Binding FontCollection}"
+                                  SelectedItem="{Binding FontFamily}"
                                   ItemsPanel="{StaticResource PanelTemplate}"
                                   HorizontalAlignment="Stretch" />
                     </StackPanel>

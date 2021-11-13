@@ -106,6 +106,15 @@ namespace Time.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Font.
+        /// </summary>
+        public static string FontLabel {
+            get {
+                return ResourceManager.GetString("FontLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Color of text..
         /// </summary>
         public static string ForegroundColorLabel {

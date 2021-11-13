@@ -18,6 +18,7 @@ namespace Time.ViewModels
         private bool _allowResize;
         private Color _background;
         private Color _foreground;
+        private FontFamily _fontFamily;
 
         public string Time
         {
@@ -79,7 +80,14 @@ namespace Time.ViewModels
             set => Set(ref _foreground, value);
         }
 
+        public FontFamily FontFamily
+        {
+            get => _fontFamily;
+            set => Set(ref _fontFamily, value);
+        }
+
         public IReadOnlyList<Color> Colors { get; }
+        public IEnumerable<FontFamily> FontCollection => Fonts.SystemFontFamilies.OrderBy(x => x.ToString());
 
         public MainViewModel()
         {
