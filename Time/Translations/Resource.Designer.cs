@@ -70,6 +70,15 @@ namespace Time.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show window always on top.
+        /// </summary>
+        public static string AlwaysOnTopLabel {
+            get {
+                return ResourceManager.GetString("AlwaysOnTopLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Appearance.
         /// </summary>
         public static string AppearanceLabel {

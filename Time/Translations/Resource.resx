@@ -120,6 +120,9 @@
   <data name="AllowResizeLabel" xml:space="preserve">
     <value>Allows / Disables resize.</value>
   </data>
+  <data name="AlwaysOnTopLabel" xml:space="preserve">
+    <value>Show window always on top</value>
+  </data>
   <data name="AppearanceLabel" xml:space="preserve">
     <value>Appearance</value>
   </data>

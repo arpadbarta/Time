@@ -33,6 +33,7 @@ namespace Time
 
             Settings.Default.AllowResize = context.AllowResize;
             Settings.Default.ShowInTaskbar = context.ShowInTaskbar;
+            Settings.Default.AlwaysOnTop = context.AlwaysOnTop;
 
             Settings.Default.IsShortTime = context.IsShortTime;
             Settings.Default.IsShortDate = context.IsShortDate;
@@ -69,6 +70,7 @@ namespace Time
 
             context.IsShortTime = Settings.Default.IsShortTime;
             context.IsShortDate = Settings.Default.IsShortDate;
+            context.AlwaysOnTop = Settings.Default.AlwaysOnTop;
 
             var foreground = System.Drawing.Color.FromArgb(Settings.Default.Foreground);
             context.Foreground = Color.FromRgb(foreground.R, foreground.G, foreground.B);

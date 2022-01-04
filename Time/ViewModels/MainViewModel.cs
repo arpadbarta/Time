@@ -20,6 +20,7 @@ namespace Time.ViewModels
         private Color _foreground;
         private FontFamily _fontFamily;
         private bool _applyOpacityToFont;
+        private bool _alwaysOnTop;
 
         public string Time
         {
@@ -69,6 +70,12 @@ namespace Time.ViewModels
         {
             get => _showInTaskbar;
             set => Set(ref _showInTaskbar, value);
+        }
+
+        public bool AlwaysOnTop
+        {
+            get => _alwaysOnTop;
+            set => Set(ref _alwaysOnTop, value);
         }
 
         public bool AllowResize
