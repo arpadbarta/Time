@@ -135,6 +135,9 @@
   <data name="FontLabel" xml:space="preserve">
     <value>Font</value>
   </data>
+  <data name="FontOpacityLabel" xml:space="preserve">
+    <value>Apply opacity to text</value>
+  </data>
   <data name="ForegroundColorLabel" xml:space="preserve">
     <value>Color of text.</value>
   </data>

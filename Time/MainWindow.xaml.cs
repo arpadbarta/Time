@@ -28,7 +28,8 @@ namespace Time
             Settings.Default.CornerRadius = context.CornerRadius;
             Settings.Default.Background = System.Drawing.Color.FromArgb(255, context.Background.R, context.Background.G, context.Background.B).ToArgb();
             Settings.Default.Foreground = System.Drawing.Color.FromArgb(255, context.Foreground.R, context.Foreground.G, context.Foreground.B).ToArgb();
-            Settings.Default.FontFamily = context.FontFamily.ToString();
+            Settings.Default.FontFamily = context.FontFamily?.ToString();
+            Settings.Default.UsOpacityForFont = context.ApplyOpacityToFont;
 
             Settings.Default.AllowResize = context.AllowResize;
             Settings.Default.ShowInTaskbar = context.ShowInTaskbar;
@@ -76,6 +77,7 @@ namespace Time
             context.Background = Color.FromRgb(background.R, background.G, background.B);
 
             context.FontFamily = context.FontCollection.FirstOrDefault(x => x.ToString() == (Settings.Default.FontFamily ?? FontFamily.ToString()));
+            context.ApplyOpacityToFont = Settings.Default.UsOpacityForFont;
 
             Left = Settings.Default.Left;
             Top = Settings.Default.Top;

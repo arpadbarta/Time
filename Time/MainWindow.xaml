@@ -34,19 +34,27 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Text="{Binding Time}"
-                               Foreground="{Binding Foreground, Converter={StaticResource ColorToBrushConverter}}"
                                FontFamily="{Binding FontFamily}"
                                FontSize="24"
                                HorizontalAlignment="Center"
-                               VerticalAlignment="Center" />
+                               VerticalAlignment="Center" >
+                        <TextBlock.Foreground>
+                            <SolidColorBrush Color="{Binding Foreground}"
+                                             Opacity="{Binding FontOpacity}" />
+                        </TextBlock.Foreground>
+                    </TextBlock>
 
                     <TextBlock Text="{Binding Date}"
-                               Foreground="{Binding Foreground, Converter={StaticResource ColorToBrushConverter}}"
                                FontFamily="{Binding FontFamily}"
                                FontSize="12"
                                Grid.Row="1"
                                HorizontalAlignment="Center"
-                               VerticalAlignment="Center" />
+                               VerticalAlignment="Center" >
+                        <TextBlock.Foreground>
+                            <SolidColorBrush Color="{Binding Foreground}"
+                                             Opacity="{Binding FontOpacity}" />
+                        </TextBlock.Foreground>
+                    </TextBlock>
 
                 </Grid>
             </Viewbox>
@@ -123,7 +131,8 @@
                         <Slider Value="{Binding Opacity}"
                                 Minimum="0.01"
                                 Maximum="1" />
-
+                        <CheckBox IsChecked="{Binding ApplyOpacityToFont}"
+                                  Content="{x:Static translations:Resource.FontOpacityLabel}" />
                         <TextBlock Text="{x:Static translations:Resource.CornerRadiusLabel}" />
 
                         <Slider Value="{Binding CornerRadius}"

@@ -19,6 +19,7 @@ namespace Time.ViewModels
         private Color _background;
         private Color _foreground;
         private FontFamily _fontFamily;
+        private bool _applyOpacityToFont;
 
         public string Time
         {
@@ -47,7 +48,15 @@ namespace Time.ViewModels
         public double Opacity
         {
             get => _opacity;
-            set => Set(ref _opacity, value);
+            set => Set(ref _opacity, value, () => RaisePropertyChanged(nameof(FontOpacity)));
+        }
+
+        public double FontOpacity => _applyOpacityToFont ? _opacity : 1;
+
+        public bool ApplyOpacityToFont
+        {
+            get => _applyOpacityToFont;
+            set => Set(ref _applyOpacityToFont, value, ()=> RaisePropertyChanged(nameof(FontOpacity)));
         }
 
         public double CornerRadius
@@ -91,7 +100,7 @@ namespace Time.ViewModels
 
         public MainViewModel()
         {
-            Colors = typeof(Brushes).GetProperties().Select(x => ((SolidColorBrush)x.GetValue(null)).Color).ToList();
+            Colors = typeof(Brushes).GetProperties().Select(x => ((SolidColorBrush)x.GetValue(null))!.Color).ToList();
 
             var timer = new DispatcherTimer
             {
