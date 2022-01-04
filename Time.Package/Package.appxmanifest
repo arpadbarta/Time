@@ -9,7 +9,7 @@
   <Identity
     Name="2766ABDEV.DateTime"
     Publisher="CN=2C978AE4-500A-46CC-8E4F-229072C4E4D2"
-    Version="1.0.3.0" />
+    Version="1.1.0.0" />
 
   <Properties>
     <DisplayName>Date &amp; Time</DisplayName>
