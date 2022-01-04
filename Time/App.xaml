@@ -8,5 +8,6 @@
         <converters:BooleanToWindowResizeConverter x:Key="BooleanToWindowResizeConverter"/>
         <converters:DoubleToCornerRadiusConverter x:Key="DoubleToCornerRadiusConverter"/>
         <converters:ColorToBrushConverter x:Key="ColorToBrushConverter"/>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </Application.Resources>
 </Application>

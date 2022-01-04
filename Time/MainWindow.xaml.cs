@@ -37,6 +37,7 @@ namespace Time
 
             Settings.Default.IsShortTime = context.IsShortTime;
             Settings.Default.IsShortDate = context.IsShortDate;
+            Settings.Default.IsDateVisible = context.IsDateVisible;
 
             Settings.Default.Left = Left;
             Settings.Default.Top = Top;
@@ -70,6 +71,8 @@ namespace Time
 
             context.IsShortTime = Settings.Default.IsShortTime;
             context.IsShortDate = Settings.Default.IsShortDate;
+            context.IsDateVisible = Settings.Default.IsDateVisible;
+
             context.AlwaysOnTop = Settings.Default.AlwaysOnTop;
 
             var foreground = System.Drawing.Color.FromArgb(Settings.Default.Foreground);

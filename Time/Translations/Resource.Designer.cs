@@ -70,7 +70,7 @@ namespace Time.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show window always on top.
+        ///   Looks up a localized string similar to Show window always on top..
         /// </summary>
         public static string AlwaysOnTopLabel {
             get {
@@ -115,6 +115,15 @@ namespace Time.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show date..
+        /// </summary>
+        public static string DateVisibilityLabel {
+            get {
+                return ResourceManager.GetString("DateVisibilityLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Font.
         /// </summary>
         public static string FontLabel {
@@ -124,7 +133,7 @@ namespace Time.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apply opacity to text.
+        ///   Looks up a localized string similar to Apply opacity to text..
         /// </summary>
         public static string FontOpacityLabel {
             get {

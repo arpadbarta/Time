@@ -202,5 +202,17 @@ namespace Time.Properties {
                 this["AlwaysOnTop"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsDateVisible {
+            get {
+                return ((bool)(this["IsDateVisible"]));
+            }
+            set {
+                this["IsDateVisible"] = value;
+            }
+        }
     }
 }

@@ -45,6 +45,7 @@
                     </TextBlock>
 
                     <TextBlock Text="{Binding Date}"
+                               Visibility="{Binding IsDateVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                                FontFamily="{Binding FontFamily}"
                                FontSize="12"
                                Grid.Row="1"
@@ -110,6 +111,9 @@
 
                         <CheckBox IsChecked="{Binding IsShortDate}"
                                   Content="{x:Static translations:Resource.ShortDateLabel}" />
+
+                        <CheckBox IsChecked="{Binding IsDateVisible}"
+                                  Content="{x:Static translations:Resource.DateVisibilityLabel}" />
 
                         <Separator Margin="0, 8" />
 

@@ -121,7 +121,7 @@
     <value>Allows / Disables resize.</value>
   </data>
   <data name="AlwaysOnTopLabel" xml:space="preserve">
-    <value>Show window always on top</value>
+    <value>Show window always on top.</value>
   </data>
   <data name="AppearanceLabel" xml:space="preserve">
     <value>Appearance</value>
@@ -135,11 +135,14 @@
   <data name="CornerRadiusLabel" xml:space="preserve">
     <value>Corner radius of the window.</value>
   </data>
+  <data name="DateVisibilityLabel" xml:space="preserve">
+    <value>Show date.</value>
+  </data>
   <data name="FontLabel" xml:space="preserve">
     <value>Font</value>
   </data>
   <data name="FontOpacityLabel" xml:space="preserve">
-    <value>Apply opacity to text</value>
+    <value>Apply opacity to text.</value>
   </data>
   <data name="ForegroundColorLabel" xml:space="preserve">
     <value>Color of text.</value>

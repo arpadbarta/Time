@@ -21,6 +21,7 @@ namespace Time.ViewModels
         private FontFamily _fontFamily;
         private bool _applyOpacityToFont;
         private bool _alwaysOnTop;
+        private bool _isDateVisible;
 
         public string Time
         {
@@ -44,6 +45,12 @@ namespace Time.ViewModels
         {
             get => _isShortDate;
             set => Set(ref _isShortDate, value, UpdateDateTime);
+        }
+
+        public bool IsDateVisible
+        {
+            get => _isDateVisible;
+            set => Set(ref _isDateVisible, value);
         }
 
         public double Opacity
