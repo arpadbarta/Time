@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -88,6 +89,20 @@ namespace Time
             Top = Settings.Default.Top;
             Width = Settings.Default.Width;
             Height = Settings.Default.Height;
+        }
+
+        private void OnSettingsMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ConfigurationPopUp.IsOpen = !ConfigurationPopUp.IsOpen;
+            e.Handled = true;
+        }
+
+        private void OnCloseMouseDown(object sender, MouseButtonEventArgs e) => Close();
+
+        private void OnDonateMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            _ = Process.Start(new ProcessStartInfo("https://www.buymeacoffee.com/arpad.barta") { UseShellExecute = true });
+            e.Handled = true;
         }
     }
 }
