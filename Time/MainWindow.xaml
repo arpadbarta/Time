@@ -64,6 +64,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition />
                         <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
                     <TextBlock Text="{Binding Time}"
@@ -77,11 +78,24 @@
                         </TextBlock.Foreground>
                     </TextBlock>
 
-                    <TextBlock Text="{Binding Date}"
+                    <TextBlock Text="{Binding Day}"
                                Visibility="{Binding IsDateVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                                FontFamily="{Binding FontFamily}"
                                FontSize="12"
                                Grid.Row="1"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center">
+                        <TextBlock.Foreground>
+                            <SolidColorBrush Color="{Binding Foreground}"
+                                             Opacity="{Binding FontOpacity}" />
+                        </TextBlock.Foreground>
+                    </TextBlock>
+
+                    <TextBlock Text="{Binding Date}"
+                               Visibility="{Binding IsDateVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                               FontFamily="{Binding FontFamily}"
+                               FontSize="12"
+                               Grid.Row="2"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center">
                         <TextBlock.Foreground>

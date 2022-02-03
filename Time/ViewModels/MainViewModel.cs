@@ -22,6 +22,7 @@ namespace Time.ViewModels
         private bool _applyOpacityToFont;
         private bool _alwaysOnTop;
         private bool _isDateVisible;
+        private string _day;
 
         public string Time
         {
@@ -33,6 +34,12 @@ namespace Time.ViewModels
         {
             get => _date;
             private set => Set(ref _date, value);
+        }
+
+        public string Day
+        {
+            get => _day;
+            set => Set(ref _day, value);
         }
 
         public bool IsShortTime
@@ -133,6 +140,7 @@ namespace Time.ViewModels
 
             Time = _isShortTime ? now.ToShortTimeString() : now.ToLongTimeString();
             Date = _isShortDate ? now.ToShortDateString() : now.ToLongDateString();
+            Day = now.ToString("dddd");
         }
     }
 }
