@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:translations="clr-namespace:Time.Translations"
         xmlns:viewModels="clr-namespace:Time.ViewModels"
         mc:Ignorable="d"
         WindowStyle="None"
@@ -105,119 +104,6 @@
                     </TextBlock>
                 </Grid>
             </Viewbox>
-
-            <Popup Name="ConfigurationPopUp">
-                <Border BorderThickness="1">
-                    <StackPanel Margin="8">
-                        <StackPanel.Resources>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="Foreground"
-                                        Value="White" />
-                                <Setter Property="Margin"
-                                        Value="0, 8" />
-                            </Style>
-
-                            <Style TargetType="CheckBox">
-                                <Setter Property="Foreground"
-                                        Value="White" />
-                            </Style>
-
-                            <DataTemplate x:Key="BrushTemplate"
-                                          DataType="Color">
-                                <Rectangle Width="200"
-                                           Height="20"
-                                           Fill="{Binding ., Converter={StaticResource ColorToBrushConverter}}" />
-                            </DataTemplate>
-
-                            <DataTemplate DataType="{x:Type FontFamily}">
-                                <TextBlock Width="200"
-                                           Height="20"
-                                           FontSize="16"
-                                           Foreground="Black"
-                                           Background="White"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           TextAlignment="Center"
-                                           Text="{Binding}"
-                                           FontFamily="{ Binding }" />
-                            </DataTemplate>
-
-                            <ItemsPanelTemplate x:Key="PanelTemplate">
-                                <StackPanel Background="Black" />
-                            </ItemsPanelTemplate>
-                        </StackPanel.Resources>
-
-                        <TextBlock Text="{x:Static translations:Resource.FormatLabel}"
-                                   FontSize="16" />
-
-                        <Separator Margin="0, 8" />
-
-                        <CheckBox IsChecked="{Binding IsShortTime}"
-                                  Content="{x:Static translations:Resource.ShortTimeLabel}" />
-
-                        <CheckBox IsChecked="{Binding IsShortDate}"
-                                  Content="{x:Static translations:Resource.ShortDateLabel}" />
-
-                        <CheckBox IsChecked="{Binding IsDateVisible}"
-                                  Content="{x:Static translations:Resource.DateVisibilityLabel}" />
-
-                        <Separator Margin="0, 8" />
-
-                        <TextBlock Text="{x:Static translations:Resource.AppearanceLabel}"
-                                   FontSize="16" />
-
-                        <Separator Margin="0, 8" />
-
-                        <CheckBox IsChecked="{Binding AllowResize}"
-                                  Content="{x:Static translations:Resource.AllowResizeLabel}" />
-
-                        <CheckBox IsChecked="{Binding ShowInTaskbar}"
-                                  Content="{x:Static translations:Resource.ShowInTaskbarLabel}" />
-
-                        <CheckBox IsChecked="{Binding AlwaysOnTop}"
-                                  Content="{x:Static translations:Resource.AlwaysOnTopLabel}" />
-
-                        <Separator Margin="0, 8" />
-
-                        <TextBlock Text="{x:Static translations:Resource.BackgroundOpacityLabel}" />
-
-                        <Slider Value="{Binding Opacity}"
-                                Minimum="0.01"
-                                Maximum="1" />
-                        <CheckBox IsChecked="{Binding ApplyOpacityToFont}"
-                                  Content="{x:Static translations:Resource.FontOpacityLabel}" />
-                        <TextBlock Text="{x:Static translations:Resource.CornerRadiusLabel}" />
-
-                        <Slider Value="{Binding CornerRadius}"
-                                Minimum="0"
-                                Maximum="270" />
-
-                        <TextBlock Text="{x:Static translations:Resource.BackgroundColorLabel}" />
-
-                        <ComboBox ItemsSource="{Binding Colors}"
-                                  SelectedItem="{Binding Background}"
-                                  ItemTemplate="{StaticResource BrushTemplate}"
-                                  ItemsPanel="{StaticResource PanelTemplate}"
-                                  HorizontalAlignment="Stretch" />
-
-                        <TextBlock Text="{x:Static translations:Resource.ForegroundColorLabel}" />
-
-                        <ComboBox ItemsSource="{Binding Colors}"
-                                  SelectedItem="{Binding Foreground}"
-                                  ItemTemplate="{StaticResource BrushTemplate}"
-                                  ItemsPanel="{StaticResource PanelTemplate}"
-                                  HorizontalAlignment="Stretch" />
-
-                        <TextBlock Text="{x:Static translations:Resource.FontLabel}" />
-
-                        <ComboBox ItemsSource="{Binding FontCollection}"
-                                  SelectedItem="{Binding FontFamily}"
-                                  ItemsPanel="{StaticResource PanelTemplate}"
-                                  HorizontalAlignment="Stretch" />
-                    </StackPanel>
-                </Border>
-            </Popup>
         </Grid>
-
     </Border>
 </Window>

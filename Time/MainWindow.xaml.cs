@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using Time.Properties;
@@ -23,12 +24,21 @@ namespace Time
 
         protected override void OnClosed(EventArgs e)
         {
+            SaveSettings();
+
+            base.OnClosed(e);
+        }
+
+        private void SaveSettings()
+        {
             var context = (MainViewModel)DataContext;
 
             Settings.Default.Opacity = context.Opacity;
             Settings.Default.CornerRadius = context.CornerRadius;
-            Settings.Default.Background = System.Drawing.Color.FromArgb(255, context.Background.R, context.Background.G, context.Background.B).ToArgb();
-            Settings.Default.Foreground = System.Drawing.Color.FromArgb(255, context.Foreground.R, context.Foreground.G, context.Foreground.B).ToArgb();
+            Settings.Default.Background = System.Drawing.Color
+                .FromArgb(255, context.Background.R, context.Background.G, context.Background.B).ToArgb();
+            Settings.Default.Foreground = System.Drawing.Color
+                .FromArgb(255, context.Foreground.R, context.Foreground.G, context.Foreground.B).ToArgb();
             Settings.Default.FontFamily = context.FontFamily?.ToString();
             Settings.Default.UsOpacityForFont = context.ApplyOpacityToFont;
 
@@ -46,8 +56,6 @@ namespace Time
             Settings.Default.Height = Height;
 
             Settings.Default.Save();
-
-            base.OnClosed(e);
         }
 
         private void OnMouseDown(object sender, MouseButtonEventArgs e)
@@ -57,7 +65,10 @@ namespace Time
                 DragMove();
             }
 
-            ConfigurationPopUp.IsOpen = e.ChangedButton is MouseButton.Right;
+            if (e.ChangedButton == MouseButton.Right)
+            {
+                OpenSettings();
+            }
         }
 
         private void LoadSettings()
@@ -93,11 +104,40 @@ namespace Time
 
         private void OnSettingsMouseDown(object sender, MouseButtonEventArgs e)
         {
-            ConfigurationPopUp.IsOpen = !ConfigurationPopUp.IsOpen;
             e.Handled = true;
+
+            OpenSettings();
         }
 
-        private void OnCloseMouseDown(object sender, MouseButtonEventArgs e) => Close();
+        private void OpenSettings()
+        {
+            var settingsWindow = Application.Current.Windows.OfType<SettingsWindow>().FirstOrDefault();
+
+            if (settingsWindow is not null)
+            {
+                if (settingsWindow.WindowState == WindowState.Minimized)
+                {
+                    settingsWindow.WindowState = WindowState.Normal;
+                }
+
+                _ = settingsWindow.Activate();
+            }
+            else
+            {
+                settingsWindow = new SettingsWindow
+                {
+                    DataContext = DataContext
+                };
+
+                settingsWindow.Show();
+            }
+        }
+
+        private void OnCloseMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            SaveSettings();
+            Application.Current.Shutdown();
+        }
 
         private void OnDonateMouseDown(object sender, MouseButtonEventArgs e)
         {
