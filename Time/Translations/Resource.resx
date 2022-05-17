@@ -126,6 +126,9 @@
   <data name="AppearanceLabel" xml:space="preserve">
     <value>Appearance</value>
   </data>
+  <data name="AutoStartUpLabel" xml:space="preserve">
+    <value>Start with windows.</value>
+  </data>
   <data name="BackgroundColorLabel" xml:space="preserve">
     <value>Background color of the window.</value>
   </data>

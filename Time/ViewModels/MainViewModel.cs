@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Media;
 using System.Windows.Threading;
+using Time.Utils;
 
 namespace Time.ViewModels
 {
@@ -15,6 +16,7 @@ namespace Time.ViewModels
         private double _opacity;
         private double _cornerRadius;
         private bool _showInTaskbar;
+        private bool _isAutoStartupEnabled;
         private bool _allowResize;
         private Color _background;
         private Color _foreground;
@@ -86,6 +88,13 @@ namespace Time.ViewModels
             set => Set(ref _showInTaskbar, value);
         }
 
+        public bool IsAutoStartupEnabled
+        {
+            get => _isAutoStartupEnabled;
+
+            set => Set(ref _isAutoStartupEnabled, value, SetAutoStartup);
+        }
+        
         public bool AlwaysOnTop
         {
             get => _alwaysOnTop;
@@ -123,6 +132,8 @@ namespace Time.ViewModels
         {
             Colors = typeof(Brushes).GetProperties().Select(x => ((SolidColorBrush)x.GetValue(null))!.Color).ToList();
 
+            IsAutoStartupEnabled = AutoStartup.IsEnabled();
+
             var timer = new DispatcherTimer
             {
                 Interval = TimeSpan.FromSeconds(1)
@@ -141,6 +152,18 @@ namespace Time.ViewModels
             Time = _isShortTime ? now.ToShortTimeString() : now.ToLongTimeString();
             Date = _isShortDate ? now.ToShortDateString() : now.ToLongDateString();
             Day = now.ToString("dddd");
+        }
+
+        private void SetAutoStartup()
+        {
+            if (_isAutoStartupEnabled)
+            {
+                AutoStartup.Enable();
+            }
+            else
+            {
+                AutoStartup.Disable();
+            }
         }
     }
 }

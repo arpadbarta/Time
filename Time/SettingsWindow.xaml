@@ -101,6 +101,9 @@
             <CheckBox IsChecked="{Binding AlwaysOnTop}"
                       Content="{x:Static translations:Resource.AlwaysOnTopLabel}" />
 
+            <CheckBox IsChecked="{Binding IsAutoStartupEnabled}"
+                      Content="{x:Static translations:Resource.AutoStartUpLabel}" />
+
             <Separator Margin="0, 8" />
 
             <TextBlock Text="{x:Static translations:Resource.BackgroundOpacityLabel}" />

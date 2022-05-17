@@ -88,6 +88,15 @@ namespace Time.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Start with windows..
+        /// </summary>
+        public static string AutoStartUpLabel {
+            get {
+                return ResourceManager.GetString("AutoStartUpLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Background color of the window..
         /// </summary>
         public static string BackgroundColorLabel {
