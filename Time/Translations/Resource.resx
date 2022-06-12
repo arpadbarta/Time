@@ -141,6 +141,9 @@
   <data name="DateVisibilityLabel" xml:space="preserve">
     <value>Show date.</value>
   </data>
+  <data name="DayVisibilityLabel" xml:space="preserve">
+    <value>Show day.</value>
+  </data>
   <data name="FontLabel" xml:space="preserve">
     <value>Font</value>
   </data>

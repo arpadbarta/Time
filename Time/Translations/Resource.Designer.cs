@@ -133,6 +133,15 @@ namespace Time.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show day..
+        /// </summary>
+        public static string DayVisibilityLabel {
+            get {
+                return ResourceManager.GetString("DayVisibilityLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Font.
         /// </summary>
         public static string FontLabel {

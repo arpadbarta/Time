@@ -25,6 +25,7 @@ namespace Time.ViewModels
         private bool _alwaysOnTop;
         private bool _isDateVisible;
         private string _day;
+        private bool _isDayVisible;
 
         public string Time
         {
@@ -60,6 +61,13 @@ namespace Time.ViewModels
         {
             get => _isDateVisible;
             set => Set(ref _isDateVisible, value);
+        }
+        
+        public bool IsDayVisible
+        {
+            get => _isDayVisible;
+
+            set => Set(ref _isDayVisible, value);
         }
 
         public double Opacity

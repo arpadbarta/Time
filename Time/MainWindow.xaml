@@ -78,7 +78,7 @@
                     </TextBlock>
 
                     <TextBlock Text="{Binding Day}"
-                               Visibility="{Binding IsDateVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                               Visibility="{Binding IsDayVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                                FontFamily="{Binding FontFamily}"
                                FontSize="12"
                                Grid.Row="1"

@@ -81,7 +81,8 @@
 
             <CheckBox IsChecked="{Binding IsShortDate}"
                       Content="{x:Static translations:Resource.ShortDateLabel}" />
-
+            <CheckBox IsChecked="{Binding IsDayVisible}"
+                      Content="{x:Static translations:Resource.DayVisibilityLabel}" />
             <CheckBox IsChecked="{Binding IsDateVisible}"
                       Content="{x:Static translations:Resource.DateVisibilityLabel}" />
 
