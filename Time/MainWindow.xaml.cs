@@ -18,18 +18,12 @@ namespace Time
             DataContext = new MainViewModel();
 
             MouseDown += OnMouseDown;
+            Closing += OnClosing;
 
             LoadSettings();
         }
-
-        protected override void OnClosed(EventArgs e)
-        {
-            SaveSettings();
-
-            base.OnClosed(e);
-        }
-
-        private void SaveSettings()
+        
+        public void SaveSettings()
         {
             var context = (MainViewModel)DataContext;
 
@@ -132,6 +126,8 @@ namespace Time
                 settingsWindow.Show();
             }
         }
+
+        private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e) => SaveSettings();
 
         private void OnCloseMouseDown(object sender, MouseButtonEventArgs e)
         {
