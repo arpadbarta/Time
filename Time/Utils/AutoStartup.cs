@@ -36,7 +36,7 @@ namespace Time.Utils
 
         private static (string Path, string Name) GetProcessDescription()
         {
-            var processFileName = Process.GetCurrentProcess().MainModule?.FileName;
+            var processFileName = System.Environment.ProcessPath;
 
             return (processFileName, Path.GetFileNameWithoutExtension(processFileName));
         }
