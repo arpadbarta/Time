@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using Time.ViewModels;
 
 namespace Time
 {
@@ -19,6 +20,7 @@ namespace Time
             }
         }
 
+        private void ResetSettings(object sender, MouseButtonEventArgs e) => (DataContext as MainViewModel)?.ResetSettings();
         private void OnCloseMouseDown(object sender, MouseButtonEventArgs e) => Close();
     }
 }

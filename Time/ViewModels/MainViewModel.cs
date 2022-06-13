@@ -88,9 +88,7 @@ namespace Time.ViewModels
         {
             Settings = _settingService.Load();
 
-            FontFamily = FontCollection.FirstOrDefault(x => x.ToString() == Settings.Visuals.FontFamily) ?? SystemFontFamily;
-            Background = (Color)(ColorConverter.ConvertFromString(Settings.Visuals.Background) ?? Colors.Black);
-            Foreground = (Color)(ColorConverter.ConvertFromString(Settings.Visuals.Foreground) ?? Colors.White);
+            UpdateVisuals();
 
             UpdateDateTime();
         }
@@ -102,6 +100,26 @@ namespace Time.ViewModels
             Settings.Visuals.FontFamily = FontFamily.ToString();
 
             _settingService.Save(Settings);
+        }
+
+        public void ResetSettings()
+        {
+            Settings.Configuration.PropertyChanged -= OnConfigurationChanged;
+
+            Settings = _settingService.GetDefaults();
+
+            UpdateVisuals();
+
+            RaisePropertyChanged();
+
+            Settings.Configuration.PropertyChanged += OnConfigurationChanged;
+        }
+
+        private void UpdateVisuals()
+        {
+            FontFamily = FontCollection.FirstOrDefault(x => x.ToString() == Settings.Visuals.FontFamily) ?? SystemFontFamily;
+            Background = (Color)(ColorConverter.ConvertFromString(Settings.Visuals.Background) ?? Colors.Black);
+            Foreground = (Color)(ColorConverter.ConvertFromString(Settings.Visuals.Foreground) ?? Colors.White);
         }
 
         private void OnTick(object sender, EventArgs e) => UpdateDateTime();

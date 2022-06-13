@@ -55,7 +55,8 @@ namespace Time.Services
                     Width = 360,
                     Height = 250,
                     AlwaysOnTop = true,
-                    AllowResize = true
+                    AllowResize = true,
+                    ShowInTaskbar = true
                 },
                 new Visuals
                 {
