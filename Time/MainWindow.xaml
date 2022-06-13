@@ -8,18 +8,20 @@
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True"
-        ResizeMode="{Binding AllowResize, Converter={StaticResource BooleanToWindowResizeConverter}}"
-        ShowInTaskbar="{Binding ShowInTaskbar}"
-        Topmost="{Binding AlwaysOnTop}"
-        Height="120"
-        Width="160"
+        Top="{Binding Settings.Properties.Top, Mode=TwoWay}"
+        Left="{Binding Settings.Properties.Left, Mode=TwoWay}"
+        Width="{Binding Settings.Properties.Width, Mode=TwoWay}"
+        Height="{Binding Settings.Properties.Height, Mode=TwoWay}"
+        ResizeMode="{Binding Settings.Properties.AllowResize, Converter={StaticResource BooleanToWindowResizeConverter}}"
+        ShowInTaskbar="{Binding Settings.Properties.ShowInTaskbar}"
+        Topmost="{Binding Settings.Properties.AlwaysOnTop}"
         Cursor="SizeAll"
         d:DataContext="{d:DesignInstance {x:Type viewModels:MainViewModel}}">
 
-    <Border CornerRadius="{Binding CornerRadius, Converter={StaticResource DoubleToCornerRadiusConverter}}">
+    <Border CornerRadius="{Binding Settings.Properties.CornerRadius, Converter={StaticResource DoubleToCornerRadiusConverter}}">
         <Border.Background>
             <SolidColorBrush Color="{Binding Background}"
-                             Opacity="{Binding Opacity}" />
+                             Opacity="{Binding Settings.Visuals.Opacity}" />
         </Border.Background>
 
         <Grid>
@@ -73,12 +75,12 @@
                                VerticalAlignment="Center">
                         <TextBlock.Foreground>
                             <SolidColorBrush Color="{Binding Foreground}"
-                                             Opacity="{Binding FontOpacity}" />
+                                             Opacity="{Binding Settings.Visuals.FontOpacity}" />
                         </TextBlock.Foreground>
                     </TextBlock>
 
                     <TextBlock Text="{Binding Day}"
-                               Visibility="{Binding IsDayVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                               Visibility="{Binding Settings.Configuration.ShowDay, Converter={StaticResource BooleanToVisibilityConverter}}"
                                FontFamily="{Binding FontFamily}"
                                FontSize="12"
                                Grid.Row="1"
@@ -86,12 +88,12 @@
                                VerticalAlignment="Center">
                         <TextBlock.Foreground>
                             <SolidColorBrush Color="{Binding Foreground}"
-                                             Opacity="{Binding FontOpacity}" />
+                                             Opacity="{Binding Settings.Visuals.FontOpacity}" />
                         </TextBlock.Foreground>
                     </TextBlock>
 
                     <TextBlock Text="{Binding Date}"
-                               Visibility="{Binding IsDateVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                               Visibility="{Binding Settings.Configuration.ShowDate, Converter={StaticResource BooleanToVisibilityConverter}}"
                                FontFamily="{Binding FontFamily}"
                                FontSize="12"
                                Grid.Row="2"
@@ -99,7 +101,7 @@
                                VerticalAlignment="Center">
                         <TextBlock.Foreground>
                             <SolidColorBrush Color="{Binding Foreground}"
-                                             Opacity="{Binding FontOpacity}" />
+                                             Opacity="{Binding Settings.Visuals.FontOpacity}" />
                         </TextBlock.Foreground>
                     </TextBlock>
                 </Grid>

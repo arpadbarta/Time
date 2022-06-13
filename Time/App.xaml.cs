@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Time.ViewModels;
 
 namespace Time
 {
@@ -18,9 +19,9 @@ namespace Time
         {
             foreach (var window in Windows)
             {
-                if (window is MainWindow mainWindow)
+                if (window is MainWindow { DataContext: MainViewModel viewModel })
                 {
-                    mainWindow.SaveSettings();
+                    viewModel.Save();
                 }
             }
         }

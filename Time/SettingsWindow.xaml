@@ -5,13 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Time"
         xmlns:translations="clr-namespace:Time.Translations"
+        xmlns:viewModels="clr-namespace:Time.ViewModels"
         mc:Ignorable="d"
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True"
         ResizeMode="NoResize"
         Title="SettingsWindow"
-        SizeToContent="WidthAndHeight">
+        SizeToContent="WidthAndHeight"
+        d:DataContext="{d:DesignInstance {x:Type viewModels:MainViewModel}}">
     <Border BorderThickness="1">
         <Border.Background>
             <SolidColorBrush Color="Black"
@@ -61,8 +63,9 @@
                   Cursor="SizeAll"
                   Height="40">
 
-                <TextBlock Text="{x:Static translations:Resource.FormatLabel}"
-                           FontSize="16" />
+                <TextBlock Text="{x:Static translations:Resource.SettingsLabel}"
+                           FontSize="28" 
+                           Margin="0"/>
 
                 <Border  Margin="8"
                          Cursor="Hand"
@@ -82,14 +85,21 @@
 
             <Separator Margin="0, 8" />
 
-            <CheckBox IsChecked="{Binding IsShortTime}"
+            <TextBlock Text="{x:Static translations:Resource.FormatLabel}"
+                       FontSize="16" />
+
+            <Separator Margin="0, 8" />
+
+            <CheckBox IsChecked="{Binding Settings.Configuration.IsShortTime}"
                       Content="{x:Static translations:Resource.ShortTimeLabel}" />
 
-            <CheckBox IsChecked="{Binding IsShortDate}"
+            <CheckBox IsChecked="{Binding Settings.Configuration.IsShortDate}"
                       Content="{x:Static translations:Resource.ShortDateLabel}" />
-            <CheckBox IsChecked="{Binding IsDayVisible}"
+
+            <CheckBox IsChecked="{Binding Settings.Configuration.ShowDay}"
                       Content="{x:Static translations:Resource.DayVisibilityLabel}" />
-            <CheckBox IsChecked="{Binding IsDateVisible}"
+
+            <CheckBox IsChecked="{Binding Settings.Configuration.ShowDate}"
                       Content="{x:Static translations:Resource.DateVisibilityLabel}" />
 
             <Separator Margin="0, 8" />
@@ -99,33 +109,34 @@
 
             <Separator Margin="0, 8" />
 
-            <CheckBox IsChecked="{Binding AllowResize}"
+            <CheckBox IsChecked="{Binding Settings.Properties.AllowResize}"
                       Content="{x:Static translations:Resource.AllowResizeLabel}" />
 
-            <CheckBox IsChecked="{Binding ShowInTaskbar}"
+            <CheckBox IsChecked="{Binding Settings.Properties.ShowInTaskbar}"
                       Content="{x:Static translations:Resource.ShowInTaskbarLabel}" />
 
-            <CheckBox IsChecked="{Binding AlwaysOnTop}"
+            <CheckBox IsChecked="{Binding Settings.Properties.AlwaysOnTop}"
                       Content="{x:Static translations:Resource.AlwaysOnTopLabel}" />
 
             <Separator Margin="0, 8" />
 
             <TextBlock Text="{x:Static translations:Resource.BackgroundOpacityLabel}" />
 
-            <Slider Value="{Binding Opacity}"
+            <Slider Value="{Binding Settings.Visuals.Opacity}"
                     Minimum="0.01"
                     Maximum="1" />
-            <CheckBox IsChecked="{Binding ApplyOpacityToFont}"
+            <CheckBox IsChecked="{Binding Settings.Visuals.ApplyOpacityToFont}"
                       Content="{x:Static translations:Resource.FontOpacityLabel}" />
+
             <TextBlock Text="{x:Static translations:Resource.CornerRadiusLabel}" />
 
-            <Slider Value="{Binding CornerRadius}"
+            <Slider Value="{Binding Settings.Properties.CornerRadius}"
                     Minimum="0"
                     Maximum="270" />
 
             <TextBlock Text="{x:Static translations:Resource.BackgroundColorLabel}" />
 
-            <ComboBox ItemsSource="{Binding Colors}"
+            <ComboBox ItemsSource="{Binding DefinedColors}"
                       SelectedItem="{Binding Background}"
                       ItemTemplate="{StaticResource BrushTemplate}"
                       ItemsPanel="{StaticResource PanelTemplate}"
@@ -133,7 +144,7 @@
 
             <TextBlock Text="{x:Static translations:Resource.ForegroundColorLabel}" />
 
-            <ComboBox ItemsSource="{Binding Colors}"
+            <ComboBox ItemsSource="{Binding DefinedColors}"
                       SelectedItem="{Binding Foreground}"
                       ItemTemplate="{StaticResource BrushTemplate}"
                       ItemsPanel="{StaticResource PanelTemplate}"

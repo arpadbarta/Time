@@ -156,6 +156,9 @@
   <data name="FormatLabel" xml:space="preserve">
     <value>Formats</value>
   </data>
+  <data name="SettingsLabel" xml:space="preserve">
+    <value>Settings</value>
+  </data>
   <data name="ShortDateLabel" xml:space="preserve">
     <value>Short date format.</value>
   </data>

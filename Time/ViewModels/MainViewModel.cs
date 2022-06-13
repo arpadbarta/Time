@@ -3,27 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Media;
 using System.Windows.Threading;
+using Time.Services;
 
 namespace Time.ViewModels
 {
     public class MainViewModel : ObservableObject
     {
-        private bool _isShortTime;
-        private bool _isShortDate;
         private string _time;
         private string _date;
-        private double _opacity;
-        private double _cornerRadius;
-        private bool _showInTaskbar;
-        private bool _allowResize;
         private Color _background;
         private Color _foreground;
         private FontFamily _fontFamily;
-        private bool _applyOpacityToFont;
-        private bool _alwaysOnTop;
-        private bool _isDateVisible;
         private string _day;
-        private bool _isDayVisible;
+        private readonly SettingsService _settingService;
+        private Settings _settings;
 
         public string Time
         {
@@ -42,70 +35,7 @@ namespace Time.ViewModels
             get => _day;
             set => Set(ref _day, value);
         }
-
-        public bool IsShortTime
-        {
-            get => _isShortTime;
-            set => Set(ref _isShortTime, value, UpdateDateTime);
-        }
-
-        public bool IsShortDate
-        {
-            get => _isShortDate;
-            set => Set(ref _isShortDate, value, UpdateDateTime);
-        }
-
-        public bool IsDateVisible
-        {
-            get => _isDateVisible;
-            set => Set(ref _isDateVisible, value);
-        }
         
-        public bool IsDayVisible
-        {
-            get => _isDayVisible;
-
-            set => Set(ref _isDayVisible, value);
-        }
-
-        public double Opacity
-        {
-            get => _opacity;
-            set => Set(ref _opacity, value, () => RaisePropertyChanged(nameof(FontOpacity)));
-        }
-
-        public double FontOpacity => _applyOpacityToFont ? _opacity : 1;
-
-        public bool ApplyOpacityToFont
-        {
-            get => _applyOpacityToFont;
-            set => Set(ref _applyOpacityToFont, value, ()=> RaisePropertyChanged(nameof(FontOpacity)));
-        }
-
-        public double CornerRadius
-        {
-            get => _cornerRadius;
-            set => Set(ref _cornerRadius, value);
-        }
-
-        public bool ShowInTaskbar
-        {
-            get => _showInTaskbar;
-            set => Set(ref _showInTaskbar, value);
-        }
-        
-        public bool AlwaysOnTop
-        {
-            get => _alwaysOnTop;
-            set => Set(ref _alwaysOnTop, value);
-        }
-
-        public bool AllowResize
-        {
-            get => _allowResize;
-            set => Set(ref _allowResize, value);
-        }
-
         public Color Background
         {
             get => _background;
@@ -124,13 +54,27 @@ namespace Time.ViewModels
             set => Set(ref _fontFamily, value);
         }
 
-        public IReadOnlyList<Color> Colors { get; }
+        public FontFamily SystemFontFamily { get; set; }
+
+        public IReadOnlyList<Color> DefinedColors { get; }
         public IEnumerable<FontFamily> FontCollection => Fonts.SystemFontFamilies.OrderBy(x => x.ToString());
+        
+        public Settings Settings
+        {
+            get => _settings;
+
+            set => Set(ref _settings, value);
+        }
 
         public MainViewModel()
         {
-            Colors = typeof(Brushes).GetProperties().Select(x => ((SolidColorBrush)x.GetValue(null))!.Color).ToList();
-            
+            DefinedColors = typeof(Brushes).GetProperties().Select(x => ((SolidColorBrush)x.GetValue(null))!.Color).ToList();
+
+            _settingService = new SettingsService();
+
+            Settings = _settingService.Load();
+            Settings.Configuration.PropertyChanged += OnConfigurationChanged;
+
             var timer = new DispatcherTimer
             {
                 Interval = TimeSpan.FromSeconds(1)
@@ -140,15 +84,38 @@ namespace Time.ViewModels
             timer.Start();
         }
 
+        public void Load()
+        {
+            Settings = _settingService.Load();
+
+            FontFamily = FontCollection.FirstOrDefault(x => x.ToString() == Settings.Visuals.FontFamily) ?? SystemFontFamily;
+            Background = (Color)(ColorConverter.ConvertFromString(Settings.Visuals.Background) ?? Colors.Black);
+            Foreground = (Color)(ColorConverter.ConvertFromString(Settings.Visuals.Foreground) ?? Colors.White);
+
+            UpdateDateTime();
+        }
+
+        public void Save()
+        {
+            Settings.Visuals.Background = Background.ToString();
+            Settings.Visuals.Foreground = Foreground.ToString();
+            Settings.Visuals.FontFamily = FontFamily.ToString();
+
+            _settingService.Save(Settings);
+        }
+
         private void OnTick(object sender, EventArgs e) => UpdateDateTime();
+        
+        private void OnConfigurationChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e) =>
+            UpdateDateTime();
 
         private void UpdateDateTime()
         {
             var now = DateTime.Now;
 
-            Time = _isShortTime ? now.ToShortTimeString() : now.ToLongTimeString();
-            Date = _isShortDate ? now.ToShortDateString() : now.ToLongDateString();
-            Day = now.ToString("dddd");
+            Time = _settings.Configuration.IsShortTime ? now.ToShortTimeString() : now.ToLongTimeString();
+            Date = _settings.Configuration.IsShortDate ? now.ToShortDateString() : now.ToLongDateString();
+            Day = now.ToString("dddd"); // TODO: At some point we should really expose configurable formatting
         }
     }
 }
