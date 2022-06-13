@@ -17,7 +17,8 @@
             <SolidColorBrush Color="Black"
                              Opacity="0.75" />
         </Border.Background>
-        <StackPanel Margin="8">
+        <StackPanel Margin="8"
+                    MaxWidth="224">
             <StackPanel.Resources>
                 <Style TargetType="TextBlock">
                     <Setter Property="Foreground"
@@ -76,6 +77,11 @@
 
             <Separator Margin="0, 8" />
 
+            <TextBlock Text="{x:Static translations:Resource.AutoStartUpLabel}"
+                       TextWrapping="Wrap" />
+
+            <Separator Margin="0, 8" />
+
             <CheckBox IsChecked="{Binding IsShortTime}"
                       Content="{x:Static translations:Resource.ShortTimeLabel}" />
 
@@ -101,9 +107,6 @@
 
             <CheckBox IsChecked="{Binding AlwaysOnTop}"
                       Content="{x:Static translations:Resource.AlwaysOnTopLabel}" />
-
-            <CheckBox IsChecked="{Binding IsAutoStartupEnabled}"
-                      Content="{x:Static translations:Resource.AutoStartUpLabel}" />
 
             <Separator Margin="0, 8" />
 

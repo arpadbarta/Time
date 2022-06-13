@@ -88,7 +88,7 @@ namespace Time.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start with windows..
+        ///   Looks up a localized string similar to Auto start up can be configured from Settings / Apps / Startup # Date &amp; time.
         /// </summary>
         public static string AutoStartUpLabel {
             get {

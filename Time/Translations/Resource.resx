@@ -127,7 +127,7 @@
     <value>Appearance</value>
   </data>
   <data name="AutoStartUpLabel" xml:space="preserve">
-    <value>Start with windows.</value>
+    <value>Auto start up can be configured from Settings / Apps / Startup # Date &amp; time</value>
   </data>
   <data name="BackgroundColorLabel" xml:space="preserve">
     <value>Background color of the window.</value>
