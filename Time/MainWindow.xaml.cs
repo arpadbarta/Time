@@ -29,7 +29,7 @@ namespace Time
         
         private void OnMouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.ChangedButton == MouseButton.Left)
+            if (e.ChangedButton == MouseButton.Left && _viewModel.Settings.Properties.AllowMove)
             {
                 DragMove();
             }

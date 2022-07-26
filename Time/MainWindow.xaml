@@ -15,7 +15,7 @@
         ResizeMode="{Binding Settings.Properties.AllowResize, Converter={StaticResource BooleanToWindowResizeConverter}}"
         ShowInTaskbar="{Binding Settings.Properties.ShowInTaskbar}"
         Topmost="{Binding Settings.Properties.AlwaysOnTop}"
-        Cursor="SizeAll"
+        Cursor="{Binding Settings.Properties.AllowMove, Converter={StaticResource BooleanToMoveCursorConverter}}"
         d:DataContext="{d:DesignInstance {x:Type viewModels:MainViewModel}}">
 
     <Border CornerRadius="{Binding Settings.Properties.CornerRadius, Converter={StaticResource DoubleToCornerRadiusConverter}}">

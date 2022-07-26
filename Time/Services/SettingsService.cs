@@ -48,16 +48,7 @@ namespace Time.Services
         public Settings GetDefaults()
         {
             return new Settings(
-                new WindowProperties
-                {
-                    Top = 150,
-                    Left = 150,
-                    Width = 360,
-                    Height = 250,
-                    AlwaysOnTop = true,
-                    AllowResize = true,
-                    ShowInTaskbar = true
-                },
+                new WindowProperties(),
                 new Visuals
                 {
                     Opacity = 0.5

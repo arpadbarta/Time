@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Time"
         xmlns:translations="clr-namespace:Time.Translations"
         xmlns:viewModels="clr-namespace:Time.ViewModels"
         mc:Ignorable="d"
@@ -123,6 +122,9 @@
 
             <CheckBox IsChecked="{Binding Settings.Properties.AllowResize}"
                       Content="{x:Static translations:Resource.AllowResizeLabel}" />
+
+            <CheckBox IsChecked="{Binding Settings.Properties.AllowMove}"
+                      Content="{x:Static translations:Resource.AllowMoveLabel}" />
 
             <CheckBox IsChecked="{Binding Settings.Properties.ShowInTaskbar}"
                       Content="{x:Static translations:Resource.ShowInTaskbarLabel}" />

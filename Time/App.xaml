@@ -9,5 +9,6 @@
         <converters:DoubleToCornerRadiusConverter x:Key="DoubleToCornerRadiusConverter"/>
         <converters:ColorToBrushConverter x:Key="ColorToBrushConverter"/>
         <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <converters:BooleanToMoveCursorConverter x:Key="BooleanToMoveCursorConverter"/>
     </Application.Resources>
 </Application>
