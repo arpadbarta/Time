@@ -10,6 +10,7 @@
         private bool _allowResize;
         private bool _showInTaskbar;
         private double _cornerRadius;
+        private bool _allowMove;
 
         public double Width
         {
@@ -47,6 +48,12 @@
             set => Set(ref _allowResize, value);
         }
 
+        public bool AllowMove
+        {
+            get => _allowMove;
+            set => Set(ref _allowMove, value);
+        }
+
         public bool ShowInTaskbar
         {
             get => _showInTaskbar;
@@ -57,6 +64,18 @@
         {
             get => _cornerRadius;
             set => Set(ref _cornerRadius, value);
+        }
+
+        public WindowProperties()
+        {
+            Top = 150;
+            Left = 150;
+            Width = 360;
+            Height = 250;
+            AlwaysOnTop = true;
+            AllowResize = true;
+            ShowInTaskbar = true;
+            AllowMove = true;
         }
     }
 }

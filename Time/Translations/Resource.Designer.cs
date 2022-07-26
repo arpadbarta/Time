@@ -61,6 +61,15 @@ namespace Time.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allows / Disables moving the window..
+        /// </summary>
+        public static string AllowMoveLabel {
+            get {
+                return ResourceManager.GetString("AllowMoveLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Allows / Disables resize..
         /// </summary>
         public static string AllowResizeLabel {
