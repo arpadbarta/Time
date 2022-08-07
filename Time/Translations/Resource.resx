@@ -141,11 +141,8 @@
   <data name="CornerRadiusLabel" xml:space="preserve">
     <value>Corner radius of the window.</value>
   </data>
-  <data name="DateVisibilityLabel" xml:space="preserve">
-    <value>Show date.</value>
-  </data>
-  <data name="DayVisibilityLabel" xml:space="preserve">
-    <value>Show day.</value>
+  <data name="CustomFormatLabel" xml:space="preserve">
+    <value>Custom format</value>
   </data>
   <data name="FontLabel" xml:space="preserve">
     <value>Font</value>
@@ -153,20 +150,35 @@
   <data name="FontOpacityLabel" xml:space="preserve">
     <value>Apply opacity to text.</value>
   </data>
+  <data name="FontSizeLabel" xml:space="preserve">
+    <value>Font size</value>
+  </data>
   <data name="ForegroundColorLabel" xml:space="preserve">
     <value>Color of text.</value>
   </data>
   <data name="FormatLabel" xml:space="preserve">
-    <value>Formats</value>
+    <value>Format</value>
+  </data>
+  <data name="LongDateLabel" xml:space="preserve">
+    <value>Long date</value>
+  </data>
+  <data name="LongDayLabel" xml:space="preserve">
+    <value>Long day</value>
+  </data>
+  <data name="LongTimeLabel" xml:space="preserve">
+    <value>Long time</value>
   </data>
   <data name="SettingsLabel" xml:space="preserve">
     <value>Settings</value>
   </data>
   <data name="ShortDateLabel" xml:space="preserve">
-    <value>Short date format.</value>
+    <value>Short date</value>
+  </data>
+  <data name="ShortDayLabel" xml:space="preserve">
+    <value>Short day</value>
   </data>
   <data name="ShortTimeLabel" xml:space="preserve">
-    <value>Short time format.</value>
+    <value>Short time</value>
   </data>
   <data name="ShowInTaskbarLabel" xml:space="preserve">
     <value>Show window in taskbar.</value>

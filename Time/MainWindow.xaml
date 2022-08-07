@@ -18,14 +18,20 @@
         Cursor="{Binding Settings.Properties.AllowMove, Converter={StaticResource BooleanToMoveCursorConverter}}"
         d:DataContext="{d:DesignInstance {x:Type viewModels:MainViewModel}}">
 
-    <Border CornerRadius="{Binding Settings.Properties.CornerRadius, Converter={StaticResource DoubleToCornerRadiusConverter}}">
-        <Border.Background>
-            <SolidColorBrush Color="{Binding Background}"
-                             Opacity="{Binding Settings.Visuals.Opacity}" />
-        </Border.Background>
+    <Window.Resources>
+        <SolidColorBrush x:Key="BackgroundBrush"
+                         Color="{Binding Background}"
+                         Opacity="{Binding Settings.Visuals.Opacity}" />
+
+        <SolidColorBrush x:Key="ForegroundBrush"
+                         Color="{Binding Foreground}"
+                         Opacity="{Binding Settings.Visuals.FontOpacity}" />
+    </Window.Resources>
+
+    <Border CornerRadius="{Binding Settings.Properties.CornerRadius, Converter={StaticResource DoubleToCornerRadiusConverter}}"
+            Background="{StaticResource BackgroundBrush}">
 
         <Grid>
-
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Right"
                         Height="40"
@@ -60,51 +66,10 @@
             </StackPanel>
 
             <Viewbox>
-                <Grid Margin="8">
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                    </Grid.RowDefinitions>
-
-                    <TextBlock Text="{Binding Time}"
-                               FontFamily="{Binding FontFamily}"
-                               FontSize="24"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center">
-                        <TextBlock.Foreground>
-                            <SolidColorBrush Color="{Binding Foreground}"
-                                             Opacity="{Binding Settings.Visuals.FontOpacity}" />
-                        </TextBlock.Foreground>
-                    </TextBlock>
-
-                    <TextBlock Text="{Binding Day}"
-                               Visibility="{Binding Settings.Configuration.ShowDay, Converter={StaticResource BooleanToVisibilityConverter}}"
-                               FontFamily="{Binding FontFamily}"
-                               FontSize="12"
-                               Grid.Row="1"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center">
-                        <TextBlock.Foreground>
-                            <SolidColorBrush Color="{Binding Foreground}"
-                                             Opacity="{Binding Settings.Visuals.FontOpacity}" />
-                        </TextBlock.Foreground>
-                    </TextBlock>
-
-                    <TextBlock Text="{Binding Date}"
-                               Visibility="{Binding Settings.Configuration.ShowDate, Converter={StaticResource BooleanToVisibilityConverter}}"
-                               FontFamily="{Binding FontFamily}"
-                               FontSize="12"
-                               Grid.Row="2"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center">
-                        <TextBlock.Foreground>
-                            <SolidColorBrush Color="{Binding Foreground}"
-                                             Opacity="{Binding Settings.Visuals.FontOpacity}" />
-                        </TextBlock.Foreground>
-                    </TextBlock>
-                </Grid>
+                <ItemsControl ItemsSource="{Binding Segments}"
+                              TextBlock.FontFamily="{Binding FontFamily}"
+                              TextBlock.Foreground="{StaticResource ForegroundBrush}"
+                              Margin="8"/>
             </Viewbox>
         </Grid>
     </Border>

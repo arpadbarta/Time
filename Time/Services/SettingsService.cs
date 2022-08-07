@@ -5,7 +5,7 @@ using Time.ViewModels;
 
 namespace Time.Services
 {
-    public record Settings(WindowProperties Properties, Visuals Visuals, DateTimeConfiguration Configuration);
+    public record Settings(WindowProperties Properties, Visuals Visuals, DateTimeConfiguration Configuration, SegmentConfiguration[] Segments);
 
     public class SettingsService
     {
@@ -30,7 +30,7 @@ namespace Time.Services
         {
             Settings settings = null;
 
-            if(File.Exists(_settingsFilePath))
+            if (File.Exists(_settingsFilePath))
             {
                 try
                 {
@@ -42,7 +42,17 @@ namespace Time.Services
                 }
             }
 
-            return settings ?? GetDefaults();
+            settings ??= GetDefaults();
+
+            if (settings.Segments is null)
+            {
+                settings = settings with
+                {
+                    Segments = GetDefaultSegments()
+                };
+            }
+
+            return settings;
         }
 
         public Settings GetDefaults()
@@ -57,7 +67,28 @@ namespace Time.Services
                 {
                     IsShortTime = true,
                     ShowDate = true
-                });
+                },
+                GetDefaultSegments());
+        }
+
+        public SegmentConfiguration[] GetDefaultSegments()
+        {
+            return new[]
+            {
+                new SegmentConfiguration
+                {
+                    Size = 24,
+                    Format = "t"
+                },
+                new SegmentConfiguration
+                {
+                    Format = "dddd"
+                },
+                new SegmentConfiguration
+                {
+                    Format = "d"
+                },
+            };
         }
     }
 }

@@ -19,8 +19,8 @@ namespace Time
                 DragMove();
             }
         }
+        private void OnCloseMouseDown(object sender, RoutedEventArgs e) => Close();
 
-        private void ResetSettings(object sender, MouseButtonEventArgs e) => (DataContext as MainViewModel)?.ResetSettings();
-        private void OnCloseMouseDown(object sender, MouseButtonEventArgs e) => Close();
+        private void ResetSettings(object sender, RoutedEventArgs e) => (DataContext as MainViewModel)?.ResetSettings();
     }
 }
