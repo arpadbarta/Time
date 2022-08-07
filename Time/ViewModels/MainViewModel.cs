@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Media;
 using System.Windows.Threading;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Time.Services;
 
 namespace Time.ViewModels
@@ -21,37 +22,37 @@ namespace Time.ViewModels
         public string Time
         {
             get => _time;
-            private set => Set(ref _time, value);
+            private set => SetProperty(ref _time, value);
         }
 
         public string Date
         {
             get => _date;
-            private set => Set(ref _date, value);
+            private set => SetProperty(ref _date, value);
         }
 
         public string Day
         {
             get => _day;
-            set => Set(ref _day, value);
+            set => SetProperty(ref _day, value);
         }
         
         public Color Background
         {
             get => _background;
-            set => Set(ref _background, value);
+            set => SetProperty(ref _background, value);
         }
 
         public Color Foreground
         {
             get => _foreground;
-            set => Set(ref _foreground, value);
+            set => SetProperty(ref _foreground, value);
         }
 
         public FontFamily FontFamily
         {
             get => _fontFamily;
-            set => Set(ref _fontFamily, value);
+            set => SetProperty(ref _fontFamily, value);
         }
 
         public FontFamily SystemFontFamily { get; set; }
@@ -63,7 +64,7 @@ namespace Time.ViewModels
         {
             get => _settings;
 
-            set => Set(ref _settings, value);
+            set => SetProperty(ref _settings, value);
         }
 
         public MainViewModel()
@@ -110,8 +111,7 @@ namespace Time.ViewModels
 
             UpdateVisuals();
 
-            RaisePropertyChanged();
-
+            OnPropertyChanged();
             Settings.Configuration.PropertyChanged += OnConfigurationChanged;
         }
 

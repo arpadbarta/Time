@@ -1,4 +1,6 @@
-﻿namespace Time.ViewModels;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+
+namespace Time.ViewModels;
 
 public class Visuals : ObservableObject
 {
@@ -11,25 +13,31 @@ public class Visuals : ObservableObject
     public string Foreground
     {
         get => _foreground;
-        set => Set(ref _foreground, value);
+        set => SetProperty(ref _foreground, value);
     }
 
     public string Background
     {
         get => _background;
-        set => Set(ref _background, value);
+        set => SetProperty(ref _background, value);
     }
 
     public string FontFamily
     {
         get => _fontFamily;
-        set => Set(ref _fontFamily, value);
+        set => SetProperty(ref _fontFamily, value);
     }
 
     public double Opacity
     {
         get => _opacity;
-        set => Set(ref _opacity, value, () => RaisePropertyChanged(nameof(FontOpacity)));
+        set
+        {
+            if (SetProperty(ref _opacity, value))
+            {
+                OnPropertyChanged(nameof(FontOpacity));
+            }
+        }
     }
 
     public double FontOpacity => _applyOpacityToFont ? _opacity : 1;
@@ -37,6 +45,12 @@ public class Visuals : ObservableObject
     public bool ApplyOpacityToFont
     {
         get => _applyOpacityToFont;
-        set => Set(ref _applyOpacityToFont, value, () => RaisePropertyChanged(nameof(FontOpacity)));
+        set
+        {
+            if (SetProperty(ref _applyOpacityToFont, value))
+            {
+                OnPropertyChanged(nameof(FontOpacity));
+            }
+        }
     }
 }

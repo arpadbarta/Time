@@ -1,4 +1,6 @@
-﻿namespace Time.ViewModels
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+
+namespace Time.ViewModels
 {
     public class WindowProperties : ObservableObject
     {
@@ -15,55 +17,55 @@
         public double Width
         {
             get => _width;
-            set => Set(ref _width, value);
+            set => SetProperty(ref _width, value);
         }
         
         public double Height
         {
             get => _height;
-            set => Set(ref _height, value);
+            set => SetProperty(ref _height, value);
         }
         
         public double Top
         {
             get => _top;
-            set => Set(ref _top, value);
+            set => SetProperty(ref _top, value);
         }
         
         public double Left
         {
             get => _left;
-            set => Set(ref _left, value);
+            set => SetProperty(ref _left, value);
         }
 
         public bool AlwaysOnTop
         {
             get => _alwaysOnTop;
-            set => Set(ref _alwaysOnTop, value);
+            set => SetProperty(ref _alwaysOnTop, value);
         }
 
         public bool AllowResize
         {
             get => _allowResize;
-            set => Set(ref _allowResize, value);
+            set => SetProperty(ref _allowResize, value);
         }
 
         public bool AllowMove
         {
             get => _allowMove;
-            set => Set(ref _allowMove, value);
+            set => SetProperty(ref _allowMove, value);
         }
 
         public bool ShowInTaskbar
         {
             get => _showInTaskbar;
-            set => Set(ref _showInTaskbar, value);
+            set => SetProperty(ref _showInTaskbar, value);
         }
 
         public double CornerRadius
         {
             get => _cornerRadius;
-            set => Set(ref _cornerRadius, value);
+            set => SetProperty(ref _cornerRadius, value);
         }
 
         public WindowProperties()
