@@ -16,6 +16,8 @@
         SizeToContent="WidthAndHeight"
         d:DataContext="{d:DesignInstance {x:Type viewModels:MainViewModel}}">
     <Border BorderThickness="1"
+            CornerRadius="2"
+            ClipToBounds="True"
             Padding="8">
         <Border.Background>
             <SolidColorBrush Color="Black"
@@ -249,9 +251,22 @@
                                 <TextBlock Text="{x:Static translations:Resource.FormatLabel}" />
                                 <ComboBox ItemsSource="{Binding Formats}" 
                                           SelectedItem="{Binding SelectedFormat}">
+                                    <ComboBox.GroupStyle>
+                                        <GroupStyle>
+                                            <GroupStyle.HeaderTemplate>
+                                                <DataTemplate DataType="{x:Type viewModels:FormatDefinition}">
+                                                    <TextBlock Text="{Binding Name}"
+                                                               FontWeight="Bold"/>
+                                                </DataTemplate>
+                                            </GroupStyle.HeaderTemplate>
+                                        </GroupStyle>
+                                    </ComboBox.GroupStyle>
                                     <ComboBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Name}"/>
+                                        <DataTemplate DataType="{x:Type viewModels:FormatDefinition}">
+                                            <TextBlock>
+                                                <Run Text="{Binding Name}"/>
+                                                <Run Text="{Binding Format, StringFormat=({0})}"/>
+                                            </TextBlock>
                                         </DataTemplate>
                                     </ComboBox.ItemTemplate>
                                 </ComboBox>

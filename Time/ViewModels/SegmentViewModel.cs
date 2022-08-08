@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Linq;
+using System.Windows.Data;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Time.Translations;
 
 namespace Time.ViewModels
 {
-    public record FormatDefinition(string Name, string Format);
+    public record FormatDefinition(string Name, string Group, string Format);
 
     public record SegmentConfiguration
     {
@@ -56,7 +57,7 @@ namespace Time.ViewModels
             }
         }
 
-        public FormatDefinition[] Formats { get; }
+        public ListCollectionView Formats { get; }
 
         public FormatDefinition SelectedFormat
         {
@@ -83,18 +84,21 @@ namespace Time.ViewModels
             _format = configuration.Format;
             _font = new FontFamily(configuration.Font);
 
-            Formats = new[]
+            var formats = new[]
             {
-                new FormatDefinition(Resource.ShortTimeLabel, "t"),
-                new FormatDefinition(Resource.LongTimeLabel, "T"),
-                new FormatDefinition(Resource.ShortDayLabel, "ddd"),
-                new FormatDefinition(Resource.LongDayLabel, "dddd"),
-                new FormatDefinition(Resource.ShortDateLabel, "d"),
-                new FormatDefinition(Resource.LongDateLabel, "D"),
-                new FormatDefinition(Resource.CustomFormatLabel, CustomFormat),
+                new FormatDefinition(Resource.ShortTimeLabel, Resource.TimeLabel, "t"),
+                new FormatDefinition(Resource.LongTimeLabel, Resource.TimeLabel, "T"),
+                new FormatDefinition(Resource.ShortDayLabel, Resource.DayLabel, "ddd"),
+                new FormatDefinition(Resource.LongDayLabel, Resource.DayLabel, "dddd"),
+                new FormatDefinition(Resource.ShortDateLabel, Resource.DateLabel, "d"),
+                new FormatDefinition(Resource.LongDateLabel, Resource.DateLabel, "D"),
+                new FormatDefinition(Resource.CustomFormatLabel, Resource.CustomFormatLabel, CustomFormat),
             };
 
-            SelectedFormat = Formats.FirstOrDefault(x => x.Format == configuration.Format) ?? Formats.First();
+            Formats = new ListCollectionView(formats);
+            Formats?.GroupDescriptions?.Add(new PropertyGroupDescription(nameof(FormatDefinition.Group)));
+
+            SelectedFormat = formats.FirstOrDefault(x => x.Format == configuration.Format) ?? formats.FirstOrDefault(x => x.Format == CustomFormat);
         }
 
         public void Update(DateTimeOffset dateTimeOffset)

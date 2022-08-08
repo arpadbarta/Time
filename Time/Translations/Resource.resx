@@ -144,6 +144,12 @@
   <data name="CustomFormatLabel" xml:space="preserve">
     <value>Custom format</value>
   </data>
+  <data name="DateLabel" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="DayLabel" xml:space="preserve">
+    <value>Day</value>
+  </data>
   <data name="FontLabel" xml:space="preserve">
     <value>Font</value>
   </data>
@@ -182,6 +188,9 @@
   </data>
   <data name="ShowInTaskbarLabel" xml:space="preserve">
     <value>Show window in taskbar.</value>
+  </data>
+  <data name="TimeLabel" xml:space="preserve">
+    <value>Time</value>
   </data>
   <data name="TitleLabel" xml:space="preserve">
     <value>Date and time</value>
