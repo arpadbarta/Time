@@ -189,7 +189,7 @@
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
-                    <ColumnDefinition />
+                    <ColumnDefinition MaxWidth="320"/>
                 </Grid.ColumnDefinitions>
 
                 <Grid Grid.ColumnSpan="2">
@@ -274,6 +274,8 @@
                                 <StackPanel Visibility="{Binding IsCustom, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <TextBlock Text="Custom format" />
                                     <TextBox Text="{Binding Format, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="{x:Static translations:Resource.CustomFormatDescription}"
+                                               TextWrapping="Wrap"/>
                                 </StackPanel>
                                 
                             </StackPanel>

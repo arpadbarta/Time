@@ -141,6 +141,13 @@
   <data name="CornerRadiusLabel" xml:space="preserve">
     <value>Corner radius of the window.</value>
   </data>
+  <data name="CustomFormatDescription" xml:space="preserve">
+    <value>Allows the formating of time and date in any arbitrary order or separation simbols.
+Example:
+d, ddd, dddd, M, MM, MMM, MMMM, y, yyy
+will result in:
+23, Tue, Tuesday, 8, 08, Aug, August, 22, 2022</value>
+  </data>
   <data name="CustomFormatLabel" xml:space="preserve">
     <value>Custom format</value>
   </data>

@@ -133,6 +133,19 @@ namespace Time.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allows the formating of time and date in any arbitrary order or separation simbols.
+        ///Example:
+        ///d, ddd, dddd, M, MM, MMM, MMMM, y, yyy
+        ///will result in:
+        ///23, Tue, Tuesday, 8, 08, Aug, August, 22, 2022.
+        /// </summary>
+        public static string CustomFormatDescription {
+            get {
+                return ResourceManager.GetString("CustomFormatDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Custom format.
         /// </summary>
         public static string CustomFormatLabel {
