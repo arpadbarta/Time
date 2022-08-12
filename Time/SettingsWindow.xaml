@@ -52,7 +52,8 @@
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center">
                     <Button Click="ResetSettings"
-                            Cursor="Arrow">
+                            Cursor="Arrow"
+                            ToolTip="{x:Static translations:Resource.ResetSettingsTooltip}">
                         <Button.Content>
                             <Path Data="M18.100006,0C21.799988,1.5635669E-07 25.299988,1.2999886 27.899994,3.5999928 30.600006,5.8999971 32,9.0000046 32,12.299993 32,15.599998 30.600006,18.700005 27.899994,20.999995 27.5,21.399989 26.899994,21.600001 26.399994,21.600001 25.899994,21.600001 25.299988,21.399989 24.899994,20.999995 24.100006,20.300013 24.100006,19.099999 24.899994,18.300011 26.699982,16.700005 27.699982,14.599998 27.699982,12.299993 27.699982,10.000005 26.699982,7.899998 24.899994,6.299991 23.100006,4.6999992 20.699982,3.7999898 18.100006,3.7999898 15.5,3.7999898 13.100006,4.6999992 11.299988,6.299991 10,7.3999976 9.1000061,8.8999985 8.6999817,10.500006L13.299988,15.099998 0,15.099998 1.1000061,2.8999954 5.5,7.2999915C6.1999817,5.8999971 7.1000061,4.6999992 8.3999939,3.5999928 10.899994,1.2999886 14.399994,1.5635669E-07 18.100006,0z"
                                   Style="{StaticResource IconStyle}" />
@@ -60,7 +61,8 @@
                     </Button>
 
                     <Button Click="OnCloseMouseDown"
-                            Cursor="Arrow">
+                            Cursor="Arrow"
+                            ToolTip="{x:Static translations:Resource.CloseTooltip}">
                         <Button.Content>
                             <Path Data="M1.442037,0L16.002031,14.585751 30.588022,0.025996563 32.001024,1.4409965 17.414783,16.001002 31.97503,30.587006 30.560022,32 15.999268,17.413969 1.4130009,31.973999 0,30.558998 14.586494,15.998742 0.027028472,1.4140019z"
                                   Style="{StaticResource IconStyle}" />
@@ -200,13 +202,15 @@
 
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Right">
-                        <Button Command="{Binding AddSegmentConfigurationCommand}">
+                        <Button Command="{Binding AddSegmentConfigurationCommand}"
+                                ToolTip="{x:Static translations:Resource.AddSegmentTooltip}">
                             <Button.Content>
                                 <Path Data="M15.000003,0L17.000002,0 17.000002,15.000029 32,15.000029 32,17.000029 17.000002,17.000029 17.000002,32 15.000003,32 15.000003,17.000029 0,17.000029 0,15.000029 15.000003,15.000029z"
                                       Style="{StaticResource IconStyle}"/>
                             </Button.Content>
                         </Button>
-                        <Button Command="{Binding RemoveSegmentConfigurationCommand}">
+                        <Button Command="{Binding RemoveSegmentConfigurationCommand}"
+                                ToolTip="{x:Static translations:Resource.RemoveSegmentTooltip}">
                             <Button.Content>
                                 <Path Data="M11.879037,6.9770327L13.201016,6.9770327 13.201016,29.024998 11.879037,29.024998z M7.1840448,6.9770327L8.5070467,6.9770327 8.5070467,29.024998 7.1840448,29.024998z M16.572997,6.9770074L17.898997,6.9770074 17.898997,29.025007 16.572997,29.025007z M2.3950014,4.3280001L4.0620031,30.725 20.671017,30.725 22.373018,4.3280001 22.251018,4.3280001 2.453002,4.3280001z M8.069006,1.1360002L8.069006,3.0040002 17.012013,3.0040002 17.012013,1.1360002z M6.9320049,0L18.148015,0 18.148015,3.0019999 25.079021,3.0019999 25.07802,4.3280001 23.649019,4.3280001 21.865017,32 2.8650017,32 1.118001,4.3270001 0,4.3270001 0,3.0010004 6.9320049,3.0010004z"
                                       Style="{StaticResource IconStyle}" />

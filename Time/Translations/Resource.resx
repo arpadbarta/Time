@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddSegmentTooltip" xml:space="preserve">
+    <value>Adds a new segment.</value>
+  </data>
   <data name="AllowMoveLabel" xml:space="preserve">
     <value>Allows / Disables moving the window.</value>
   </data>
@@ -137,6 +140,9 @@
   </data>
   <data name="BackgroundOpacityLabel" xml:space="preserve">
     <value>Opacity / Transparency of the background.</value>
+  </data>
+  <data name="CloseTooltip" xml:space="preserve">
+    <value>Close</value>
   </data>
   <data name="CornerRadiusLabel" xml:space="preserve">
     <value>Corner radius of the window.</value>
@@ -181,7 +187,16 @@ will result in:
   <data name="LongTimeLabel" xml:space="preserve">
     <value>Long time</value>
   </data>
+  <data name="RemoveSegmentTooltip" xml:space="preserve">
+    <value>Removes the currently selected segment.</value>
+  </data>
+  <data name="ResetSettingsTooltip" xml:space="preserve">
+    <value>Resets the current settings to their default values.</value>
+  </data>
   <data name="SettingsLabel" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SettingsTooltip" xml:space="preserve">
     <value>Settings</value>
   </data>
   <data name="ShortDateLabel" xml:space="preserve">
@@ -195,6 +210,9 @@ will result in:
   </data>
   <data name="ShowInTaskbarLabel" xml:space="preserve">
     <value>Show window in taskbar.</value>
+  </data>
+  <data name="ShowLoveTooltip" xml:space="preserve">
+    <value>Love the thing, migh even get you a coffee!</value>
   </data>
   <data name="TimeLabel" xml:space="preserve">
     <value>Time</value>

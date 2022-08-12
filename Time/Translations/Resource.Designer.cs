@@ -61,6 +61,15 @@ namespace Time.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adds a new segment..
+        /// </summary>
+        public static string AddSegmentTooltip {
+            get {
+                return ResourceManager.GetString("AddSegmentTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Allows / Disables moving the window..
         /// </summary>
         public static string AllowMoveLabel {
@@ -120,6 +129,15 @@ namespace Time.Translations {
         public static string BackgroundOpacityLabel {
             get {
                 return ResourceManager.GetString("BackgroundOpacityLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string CloseTooltip {
+            get {
+                return ResourceManager.GetString("CloseTooltip", resourceCulture);
             }
         }
         
@@ -245,11 +263,38 @@ namespace Time.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Removes the currently selected segment..
+        /// </summary>
+        public static string RemoveSegmentTooltip {
+            get {
+                return ResourceManager.GetString("RemoveSegmentTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resets the current settings to their default values..
+        /// </summary>
+        public static string ResetSettingsTooltip {
+            get {
+                return ResourceManager.GetString("ResetSettingsTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string SettingsLabel {
             get {
                 return ResourceManager.GetString("SettingsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string SettingsTooltip {
+            get {
+                return ResourceManager.GetString("SettingsTooltip", resourceCulture);
             }
         }
         
@@ -286,6 +331,15 @@ namespace Time.Translations {
         public static string ShowInTaskbarLabel {
             get {
                 return ResourceManager.GetString("ShowInTaskbarLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Love the thing, migh even get you a coffee!.
+        /// </summary>
+        public static string ShowLoveTooltip {
+            get {
+                return ResourceManager.GetString("ShowLoveTooltip", resourceCulture);
             }
         }
         
