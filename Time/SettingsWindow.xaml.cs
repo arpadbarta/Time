@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Microsoft.AppCenter.Analytics;
+using System.Windows;
 using System.Windows.Input;
 using Time.ViewModels;
 
@@ -19,7 +20,11 @@ namespace Time
                 DragMove();
             }
         }
-        private void OnCloseMouseDown(object sender, RoutedEventArgs e) => Close();
+        private void OnCloseMouseDown(object sender, RoutedEventArgs e)
+        {
+            Close();
+            Analytics.TrackEvent("settings-closed");
+        }
 
         private void ResetSettings(object sender, RoutedEventArgs e) => (DataContext as MainViewModel)?.ResetSettings();
     }
