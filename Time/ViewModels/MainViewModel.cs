@@ -145,6 +145,15 @@ namespace Time.ViewModels
 
             OnPropertyChanged();
 
+            Segments.Clear();
+
+            foreach (var segmentConfiguration in Settings.Segments)
+            {
+                Segments.Add(new SegmentViewModel(segmentConfiguration));
+            }
+
+            SelectedSegment = Segments.FirstOrDefault();
+
             Analytics.TrackEvent("settings-reset");
         }
 
