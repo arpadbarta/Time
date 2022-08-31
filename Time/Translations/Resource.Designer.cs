@@ -61,6 +61,15 @@ namespace Time.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adds a new segment..
+        /// </summary>
+        public static string AddSegmentTooltip {
+            get {
+                return ResourceManager.GetString("AddSegmentTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Allows / Disables moving the window..
         /// </summary>
         public static string AllowMoveLabel {
@@ -124,6 +133,15 @@ namespace Time.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string CloseTooltip {
+            get {
+                return ResourceManager.GetString("CloseTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Corner radius of the window..
         /// </summary>
         public static string CornerRadiusLabel {
@@ -133,20 +151,42 @@ namespace Time.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show date..
+        ///   Looks up a localized string similar to Allows the formating of time and date in any arbitrary order or separation simbols.
+        ///Example:
+        ///d, ddd, dddd, M, MM, MMM, MMMM, y, yyy
+        ///will result in:
+        ///23, Tue, Tuesday, 8, 08, Aug, August, 22, 2022.
         /// </summary>
-        public static string DateVisibilityLabel {
+        public static string CustomFormatDescription {
             get {
-                return ResourceManager.GetString("DateVisibilityLabel", resourceCulture);
+                return ResourceManager.GetString("CustomFormatDescription", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show day..
+        ///   Looks up a localized string similar to Custom format.
         /// </summary>
-        public static string DayVisibilityLabel {
+        public static string CustomFormatLabel {
             get {
-                return ResourceManager.GetString("DayVisibilityLabel", resourceCulture);
+                return ResourceManager.GetString("CustomFormatLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        public static string DateLabel {
+            get {
+                return ResourceManager.GetString("DateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day.
+        /// </summary>
+        public static string DayLabel {
+            get {
+                return ResourceManager.GetString("DayLabel", resourceCulture);
             }
         }
         
@@ -169,6 +209,15 @@ namespace Time.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Font size.
+        /// </summary>
+        public static string FontSizeLabel {
+            get {
+                return ResourceManager.GetString("FontSizeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Color of text..
         /// </summary>
         public static string ForegroundColorLabel {
@@ -178,11 +227,56 @@ namespace Time.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Formats.
+        ///   Looks up a localized string similar to Format.
         /// </summary>
         public static string FormatLabel {
             get {
                 return ResourceManager.GetString("FormatLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Long date.
+        /// </summary>
+        public static string LongDateLabel {
+            get {
+                return ResourceManager.GetString("LongDateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Long day.
+        /// </summary>
+        public static string LongDayLabel {
+            get {
+                return ResourceManager.GetString("LongDayLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Long time.
+        /// </summary>
+        public static string LongTimeLabel {
+            get {
+                return ResourceManager.GetString("LongTimeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Removes the currently selected segment..
+        /// </summary>
+        public static string RemoveSegmentTooltip {
+            get {
+                return ResourceManager.GetString("RemoveSegmentTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resets the current settings to their default values..
+        /// </summary>
+        public static string ResetSettingsTooltip {
+            get {
+                return ResourceManager.GetString("ResetSettingsTooltip", resourceCulture);
             }
         }
         
@@ -196,7 +290,16 @@ namespace Time.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Short date format..
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string SettingsTooltip {
+            get {
+                return ResourceManager.GetString("SettingsTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Short date.
         /// </summary>
         public static string ShortDateLabel {
             get {
@@ -205,7 +308,16 @@ namespace Time.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Short time format..
+        ///   Looks up a localized string similar to Short day.
+        /// </summary>
+        public static string ShortDayLabel {
+            get {
+                return ResourceManager.GetString("ShortDayLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Short time.
         /// </summary>
         public static string ShortTimeLabel {
             get {
@@ -219,6 +331,24 @@ namespace Time.Translations {
         public static string ShowInTaskbarLabel {
             get {
                 return ResourceManager.GetString("ShowInTaskbarLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Love the thing, migh even get you a coffee!.
+        /// </summary>
+        public static string ShowLoveTooltip {
+            get {
+                return ResourceManager.GetString("ShowLoveTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time.
+        /// </summary>
+        public static string TimeLabel {
+            get {
+                return ResourceManager.GetString("TimeLabel", resourceCulture);
             }
         }
         

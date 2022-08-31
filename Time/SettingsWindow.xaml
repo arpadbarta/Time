@@ -9,167 +9,285 @@
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True"
-        ResizeMode="NoResize"
+        ResizeMode="CanResizeWithGrip"
+        MinHeight="400"
+        MinWidth="800"
         Title="SettingsWindow"
         SizeToContent="WidthAndHeight"
         d:DataContext="{d:DesignInstance {x:Type viewModels:MainViewModel}}">
-    <Border BorderThickness="1">
+    <Border BorderThickness="1"
+            CornerRadius="2"
+            ClipToBounds="True"
+            Padding="8">
         <Border.Background>
             <SolidColorBrush Color="Black"
                              Opacity="0.75" />
         </Border.Background>
-        <StackPanel Margin="8"
-                    MaxWidth="224">
-            <StackPanel.Resources>
-                <Style TargetType="TextBlock">
-                    <Setter Property="Foreground"
-                            Value="White" />
-                    <Setter Property="Margin"
-                            Value="0, 8" />
-                </Style>
 
-                <Style TargetType="CheckBox">
-                    <Setter Property="Foreground"
-                            Value="White" />
-                </Style>
+        <Grid>
 
-                <DataTemplate x:Key="BrushTemplate"
-                              DataType="Color">
-                    <Rectangle Width="200"
-                               Height="20"
-                               Fill="{Binding ., Converter={StaticResource ColorToBrushConverter}}" />
-                </DataTemplate>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
 
-                <DataTemplate DataType="{x:Type FontFamily}">
-                    <TextBlock Width="200"
-                               Height="20"
-                               FontSize="16"
-                               Foreground="Black"
-                               Background="White"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               TextAlignment="Center"
-                               Text="{Binding}"
-                               FontFamily="{ Binding }" />
-                </DataTemplate>
-
-                <ItemsPanelTemplate x:Key="PanelTemplate">
-                    <StackPanel Background="Black" />
-                </ItemsPanelTemplate>
-            </StackPanel.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
             <Grid HorizontalAlignment="Stretch"
+                  Grid.ColumnSpan="2"
+                  Grid.Row="0"
+                  Grid.Column="0"
                   Cursor="SizeAll"
-                  Height="40">
+                  Height="48">
 
                 <TextBlock Text="{x:Static translations:Resource.SettingsLabel}"
-                           FontSize="28" 
-                           Margin="0"/>
+                           FontSize="28"
+                           Foreground="White"
+                           VerticalAlignment="Center" />
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Border  Margin="8"
-                             Cursor="Hand"
-                             MouseDown="ResetSettings"
-                             HorizontalAlignment="Right"
-                             Background="Transparent">
-                        <Path Data="M18.100006,0C21.799988,1.5635669E-07 25.299988,1.2999886 27.899994,3.5999928 30.600006,5.8999971 32,9.0000046 32,12.299993 32,15.599998 30.600006,18.700005 27.899994,20.999995 27.5,21.399989 26.899994,21.600001 26.399994,21.600001 25.899994,21.600001 25.299988,21.399989 24.899994,20.999995 24.100006,20.300013 24.100006,19.099999 24.899994,18.300011 26.699982,16.700005 27.699982,14.599998 27.699982,12.299993 27.699982,10.000005 26.699982,7.899998 24.899994,6.299991 23.100006,4.6999992 20.699982,3.7999898 18.100006,3.7999898 15.5,3.7999898 13.100006,4.6999992 11.299988,6.299991 10,7.3999976 9.1000061,8.8999985 8.6999817,10.500006L13.299988,15.099998 0,15.099998 1.1000061,2.8999954 5.5,7.2999915C6.1999817,5.8999971 7.1000061,4.6999992 8.3999939,3.5999928 10.899994,1.2999886 14.399994,1.5635669E-07 18.100006,0z"
-                              Stretch="Uniform"
-                              Fill="#FFFFFFFF" />
-                    </Border>
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center">
+                    <Button Click="ResetSettings"
+                            Cursor="Arrow"
+                            ToolTip="{x:Static translations:Resource.ResetSettingsTooltip}">
+                        <Button.Content>
+                            <Path Data="M18.100006,0C21.799988,1.5635669E-07 25.299988,1.2999886 27.899994,3.5999928 30.600006,5.8999971 32,9.0000046 32,12.299993 32,15.599998 30.600006,18.700005 27.899994,20.999995 27.5,21.399989 26.899994,21.600001 26.399994,21.600001 25.899994,21.600001 25.299988,21.399989 24.899994,20.999995 24.100006,20.300013 24.100006,19.099999 24.899994,18.300011 26.699982,16.700005 27.699982,14.599998 27.699982,12.299993 27.699982,10.000005 26.699982,7.899998 24.899994,6.299991 23.100006,4.6999992 20.699982,3.7999898 18.100006,3.7999898 15.5,3.7999898 13.100006,4.6999992 11.299988,6.299991 10,7.3999976 9.1000061,8.8999985 8.6999817,10.500006L13.299988,15.099998 0,15.099998 1.1000061,2.8999954 5.5,7.2999915C6.1999817,5.8999971 7.1000061,4.6999992 8.3999939,3.5999928 10.899994,1.2999886 14.399994,1.5635669E-07 18.100006,0z"
+                                  Style="{StaticResource IconStyle}" />
+                        </Button.Content>
+                    </Button>
 
-                    <Border  Margin="8"
-                             Cursor="Hand"
-                             MouseDown="OnCloseMouseDown"
-                             HorizontalAlignment="Right"
-                             Background="Transparent">
-                        <Path Data="M1.442037,0L16.002031,14.585751 30.588022,0.025996563 32.001024,1.4409965 17.414783,16.001002 31.97503,30.587006 30.560022,32 15.999268,17.413969 1.4130009,31.973999 0,30.558998 14.586494,15.998742 0.027028472,1.4140019z"
-                              Stretch="Uniform"
-                              Fill="#FFFFFFFF" />
-                    </Border>
+                    <Button Click="OnCloseMouseDown"
+                            Cursor="Arrow"
+                            ToolTip="{x:Static translations:Resource.CloseTooltip}">
+                        <Button.Content>
+                            <Path Data="M1.442037,0L16.002031,14.585751 30.588022,0.025996563 32.001024,1.4409965 17.414783,16.001002 31.97503,30.587006 30.560022,32 15.999268,17.413969 1.4130009,31.973999 0,30.558998 14.586494,15.998742 0.027028472,1.4140019z"
+                                  Style="{StaticResource IconStyle}" />
+                        </Button.Content>
+                    </Button>
                 </StackPanel>
+
+                <Separator VerticalAlignment="Bottom"/>
             </Grid>
 
-            <Separator Margin="0, 8" />
+            <ScrollViewer Grid.Column="0"
+                          Grid.Row="1"
+                          HorizontalScrollBarVisibility="Disabled"
+                          VerticalScrollBarVisibility="Auto">
+                <StackPanel Margin="8"
+                            MaxWidth="224">
+                    <StackPanel.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground"
+                                    Value="White" />
+                            <Setter Property="Margin"
+                                    Value="0, 8" />
+                        </Style>
 
-            <TextBlock Text="{x:Static translations:Resource.AutoStartUpLabel}"
-                       TextWrapping="Wrap" />
+                        <Style TargetType="CheckBox">
+                            <Setter Property="Foreground"
+                                    Value="White" />
+                        </Style>
 
-            <Separator Margin="0, 8" />
+                        <DataTemplate x:Key="BrushTemplate"
+                                      DataType="Color">
+                            <Rectangle Width="200"
+                                       Height="20"
+                                       Fill="{Binding ., Converter={StaticResource ColorToBrushConverter}}" />
+                        </DataTemplate>
 
-            <TextBlock Text="{x:Static translations:Resource.FormatLabel}"
-                       FontSize="16" />
+                        <DataTemplate DataType="{x:Type FontFamily}">
+                            <TextBlock Width="200"
+                                       Height="20"
+                                       FontSize="16"
+                                       Foreground="Black"
+                                       Background="White"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       TextAlignment="Center"
+                                       Text="{Binding}"
+                                       FontFamily="{ Binding }" />
+                        </DataTemplate>
 
-            <Separator Margin="0, 8" />
+                        <ItemsPanelTemplate x:Key="PanelTemplate">
+                            <StackPanel Background="Black" />
+                        </ItemsPanelTemplate>
+                    </StackPanel.Resources>
 
-            <CheckBox IsChecked="{Binding Settings.Configuration.IsShortTime}"
-                      Content="{x:Static translations:Resource.ShortTimeLabel}" />
+                    <TextBlock Text="{x:Static translations:Resource.AutoStartUpLabel}"
+                               TextWrapping="Wrap" />
 
-            <CheckBox IsChecked="{Binding Settings.Configuration.IsShortDate}"
-                      Content="{x:Static translations:Resource.ShortDateLabel}" />
+                    <Separator Margin="0, 8" />
 
-            <CheckBox IsChecked="{Binding Settings.Configuration.ShowDay}"
-                      Content="{x:Static translations:Resource.DayVisibilityLabel}" />
+                    <TextBlock Text="{x:Static translations:Resource.AppearanceLabel}"
+                               FontSize="16" />
 
-            <CheckBox IsChecked="{Binding Settings.Configuration.ShowDate}"
-                      Content="{x:Static translations:Resource.DateVisibilityLabel}" />
+                    <Separator Margin="0, 8" />
 
-            <Separator Margin="0, 8" />
+                    <CheckBox IsChecked="{Binding Settings.Properties.AllowResize}"
+                              Content="{x:Static translations:Resource.AllowResizeLabel}" />
 
-            <TextBlock Text="{x:Static translations:Resource.AppearanceLabel}"
-                       FontSize="16" />
+                    <CheckBox IsChecked="{Binding Settings.Properties.AllowMove}"
+                              Content="{x:Static translations:Resource.AllowMoveLabel}" />
 
-            <Separator Margin="0, 8" />
+                    <CheckBox IsChecked="{Binding Settings.Properties.ShowInTaskbar}"
+                              Content="{x:Static translations:Resource.ShowInTaskbarLabel}" />
 
-            <CheckBox IsChecked="{Binding Settings.Properties.AllowResize}"
-                      Content="{x:Static translations:Resource.AllowResizeLabel}" />
+                    <CheckBox IsChecked="{Binding Settings.Properties.AlwaysOnTop}"
+                              Content="{x:Static translations:Resource.AlwaysOnTopLabel}" />
 
-            <CheckBox IsChecked="{Binding Settings.Properties.AllowMove}"
-                      Content="{x:Static translations:Resource.AllowMoveLabel}" />
+                    <Separator Margin="0, 8" />
 
-            <CheckBox IsChecked="{Binding Settings.Properties.ShowInTaskbar}"
-                      Content="{x:Static translations:Resource.ShowInTaskbarLabel}" />
+                    <TextBlock Text="{x:Static translations:Resource.BackgroundOpacityLabel}" />
 
-            <CheckBox IsChecked="{Binding Settings.Properties.AlwaysOnTop}"
-                      Content="{x:Static translations:Resource.AlwaysOnTopLabel}" />
+                    <Slider Value="{Binding Settings.Visuals.Opacity}"
+                            Minimum="0.01"
+                            Maximum="1" />
+                    <CheckBox IsChecked="{Binding Settings.Visuals.ApplyOpacityToFont}"
+                              Content="{x:Static translations:Resource.FontOpacityLabel}" />
 
-            <Separator Margin="0, 8" />
+                    <TextBlock Text="{x:Static translations:Resource.CornerRadiusLabel}" />
 
-            <TextBlock Text="{x:Static translations:Resource.BackgroundOpacityLabel}" />
+                    <Slider Value="{Binding Settings.Properties.CornerRadius}"
+                            Minimum="0"
+                            Maximum="270" />
 
-            <Slider Value="{Binding Settings.Visuals.Opacity}"
-                    Minimum="0.01"
-                    Maximum="1" />
-            <CheckBox IsChecked="{Binding Settings.Visuals.ApplyOpacityToFont}"
-                      Content="{x:Static translations:Resource.FontOpacityLabel}" />
+                    <TextBlock Text="{x:Static translations:Resource.BackgroundColorLabel}" />
 
-            <TextBlock Text="{x:Static translations:Resource.CornerRadiusLabel}" />
+                    <ComboBox ItemsSource="{Binding DefinedColors}"
+                              SelectedItem="{Binding Background}"
+                              ItemTemplate="{StaticResource BrushTemplate}"
+                              ItemsPanel="{StaticResource PanelTemplate}"
+                              HorizontalAlignment="Stretch" />
 
-            <Slider Value="{Binding Settings.Properties.CornerRadius}"
-                    Minimum="0"
-                    Maximum="270" />
+                    <TextBlock Text="{x:Static translations:Resource.ForegroundColorLabel}" />
 
-            <TextBlock Text="{x:Static translations:Resource.BackgroundColorLabel}" />
+                    <ComboBox ItemsSource="{Binding DefinedColors}"
+                              SelectedItem="{Binding Foreground}"
+                              ItemTemplate="{StaticResource BrushTemplate}"
+                              ItemsPanel="{StaticResource PanelTemplate}"
+                              HorizontalAlignment="Stretch" />
 
-            <ComboBox ItemsSource="{Binding DefinedColors}"
-                      SelectedItem="{Binding Background}"
-                      ItemTemplate="{StaticResource BrushTemplate}"
-                      ItemsPanel="{StaticResource PanelTemplate}"
-                      HorizontalAlignment="Stretch" />
+                    <TextBlock Text="{x:Static translations:Resource.FontLabel}" />
 
-            <TextBlock Text="{x:Static translations:Resource.ForegroundColorLabel}" />
+                    <ComboBox ItemsSource="{Binding FontCollection}"
+                              SelectedItem="{Binding FontFamily}"
+                              ItemsPanel="{StaticResource PanelTemplate}"
+                              HorizontalAlignment="Stretch" />
+                </StackPanel>
+            </ScrollViewer>
 
-            <ComboBox ItemsSource="{Binding DefinedColors}"
-                      SelectedItem="{Binding Foreground}"
-                      ItemTemplate="{StaticResource BrushTemplate}"
-                      ItemsPanel="{StaticResource PanelTemplate}"
-                      HorizontalAlignment="Stretch" />
+            <Grid Grid.Column="1"
+                  Grid.Row="1"
+                  TextBlock.Foreground="White">
 
-            <TextBlock Text="{x:Static translations:Resource.FontLabel}" />
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
 
-            <ComboBox ItemsSource="{Binding FontCollection}"
-                      SelectedItem="{Binding FontFamily}"
-                      ItemsPanel="{StaticResource PanelTemplate}"
-                      HorizontalAlignment="Stretch" />
-        </StackPanel>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition MaxWidth="320"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.ColumnSpan="2">
+
+                    <TextBlock Text="Segments"
+                               FontSize="22"
+                               VerticalAlignment="Center" />
+
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                        <Button Command="{Binding AddSegmentConfigurationCommand}"
+                                ToolTip="{x:Static translations:Resource.AddSegmentTooltip}">
+                            <Button.Content>
+                                <Path Data="M15.000003,0L17.000002,0 17.000002,15.000029 32,15.000029 32,17.000029 17.000002,17.000029 17.000002,32 15.000003,32 15.000003,17.000029 0,17.000029 0,15.000029 15.000003,15.000029z"
+                                      Style="{StaticResource IconStyle}"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Command="{Binding RemoveSegmentConfigurationCommand}"
+                                ToolTip="{x:Static translations:Resource.RemoveSegmentTooltip}">
+                            <Button.Content>
+                                <Path Data="M11.879037,6.9770327L13.201016,6.9770327 13.201016,29.024998 11.879037,29.024998z M7.1840448,6.9770327L8.5070467,6.9770327 8.5070467,29.024998 7.1840448,29.024998z M16.572997,6.9770074L17.898997,6.9770074 17.898997,29.025007 16.572997,29.025007z M2.3950014,4.3280001L4.0620031,30.725 20.671017,30.725 22.373018,4.3280001 22.251018,4.3280001 2.453002,4.3280001z M8.069006,1.1360002L8.069006,3.0040002 17.012013,3.0040002 17.012013,1.1360002z M6.9320049,0L18.148015,0 18.148015,3.0019999 25.079021,3.0019999 25.07802,4.3280001 23.649019,4.3280001 21.865017,32 2.8650017,32 1.118001,4.3270001 0,4.3270001 0,3.0010004 6.9320049,3.0010004z"
+                                      Style="{StaticResource IconStyle}" />
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+
+                <ListView ItemsSource="{Binding Segments}"
+                          SelectedItem="{Binding SelectedSegment}"
+                          Grid.Row="1"
+                          Grid.Column="0"
+                          Background="Transparent"
+                          Foreground="White"
+                          BorderBrush="Transparent"
+                          HorizontalContentAlignment="Center"
+                          Margin="8"/>
+
+                <ContentControl Content="{Binding SelectedSegment, Mode=OneWay}"
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                Margin="8">
+                    <ContentControl.ContentTemplate>
+                        <DataTemplate DataType="{x:Type viewModels:SegmentViewModel}">
+                            <StackPanel>
+                                <StackPanel.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground"
+                                                Value="White" />
+                                        <Setter Property="Margin"
+                                                Value="0, 8" />
+                                    </Style>
+                                </StackPanel.Resources>
+                                <TextBlock>
+                                    <Run Text="{x:Static translations:Resource.FontSizeLabel}"/>
+                                    <Run Text="{Binding Size, StringFormat= ({0:N2})}"/>
+                                </TextBlock>
+                                <Slider Minimum="6"
+                                        Maximum="128"
+                                        Value="{Binding Size}"/>
+
+                                <TextBlock Text="{x:Static translations:Resource.FormatLabel}" />
+                                <ComboBox ItemsSource="{Binding Formats}" 
+                                          SelectedItem="{Binding SelectedFormat}">
+                                    <ComboBox.GroupStyle>
+                                        <GroupStyle>
+                                            <GroupStyle.HeaderTemplate>
+                                                <DataTemplate DataType="{x:Type viewModels:FormatDefinition}">
+                                                    <TextBlock Text="{Binding Name}"
+                                                               FontWeight="Bold"/>
+                                                </DataTemplate>
+                                            </GroupStyle.HeaderTemplate>
+                                        </GroupStyle>
+                                    </ComboBox.GroupStyle>
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate DataType="{x:Type viewModels:FormatDefinition}">
+                                            <TextBlock>
+                                                <Run Text="{Binding Name}"/>
+                                                <Run Text="{Binding Format, StringFormat=({0})}"/>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+
+                                <StackPanel Visibility="{Binding IsCustom, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <TextBlock Text="Custom format" />
+                                    <TextBox Text="{Binding Format, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="{x:Static translations:Resource.CustomFormatDescription}"
+                                               TextWrapping="Wrap"/>
+                                </StackPanel>
+                                
+                            </StackPanel>
+                        </DataTemplate>
+                    </ContentControl.ContentTemplate>
+                </ContentControl>
+            </Grid>
+        </Grid>
+
     </Border>
 </Window>

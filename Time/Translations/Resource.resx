@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddSegmentTooltip" xml:space="preserve">
+    <value>Adds a new segment.</value>
+  </data>
   <data name="AllowMoveLabel" xml:space="preserve">
     <value>Allows / Disables moving the window.</value>
   </data>
@@ -138,14 +141,27 @@
   <data name="BackgroundOpacityLabel" xml:space="preserve">
     <value>Opacity / Transparency of the background.</value>
   </data>
+  <data name="CloseTooltip" xml:space="preserve">
+    <value>Close</value>
+  </data>
   <data name="CornerRadiusLabel" xml:space="preserve">
     <value>Corner radius of the window.</value>
   </data>
-  <data name="DateVisibilityLabel" xml:space="preserve">
-    <value>Show date.</value>
+  <data name="CustomFormatDescription" xml:space="preserve">
+    <value>Allows the formating of time and date in any arbitrary order or separation simbols.
+Example:
+d, ddd, dddd, M, MM, MMM, MMMM, y, yyy
+will result in:
+23, Tue, Tuesday, 8, 08, Aug, August, 22, 2022</value>
   </data>
-  <data name="DayVisibilityLabel" xml:space="preserve">
-    <value>Show day.</value>
+  <data name="CustomFormatLabel" xml:space="preserve">
+    <value>Custom format</value>
+  </data>
+  <data name="DateLabel" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="DayLabel" xml:space="preserve">
+    <value>Day</value>
   </data>
   <data name="FontLabel" xml:space="preserve">
     <value>Font</value>
@@ -153,23 +169,53 @@
   <data name="FontOpacityLabel" xml:space="preserve">
     <value>Apply opacity to text.</value>
   </data>
+  <data name="FontSizeLabel" xml:space="preserve">
+    <value>Font size</value>
+  </data>
   <data name="ForegroundColorLabel" xml:space="preserve">
     <value>Color of text.</value>
   </data>
   <data name="FormatLabel" xml:space="preserve">
-    <value>Formats</value>
+    <value>Format</value>
+  </data>
+  <data name="LongDateLabel" xml:space="preserve">
+    <value>Long date</value>
+  </data>
+  <data name="LongDayLabel" xml:space="preserve">
+    <value>Long day</value>
+  </data>
+  <data name="LongTimeLabel" xml:space="preserve">
+    <value>Long time</value>
+  </data>
+  <data name="RemoveSegmentTooltip" xml:space="preserve">
+    <value>Removes the currently selected segment.</value>
+  </data>
+  <data name="ResetSettingsTooltip" xml:space="preserve">
+    <value>Resets the current settings to their default values.</value>
   </data>
   <data name="SettingsLabel" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="SettingsTooltip" xml:space="preserve">
+    <value>Settings</value>
+  </data>
   <data name="ShortDateLabel" xml:space="preserve">
-    <value>Short date format.</value>
+    <value>Short date</value>
+  </data>
+  <data name="ShortDayLabel" xml:space="preserve">
+    <value>Short day</value>
   </data>
   <data name="ShortTimeLabel" xml:space="preserve">
-    <value>Short time format.</value>
+    <value>Short time</value>
   </data>
   <data name="ShowInTaskbarLabel" xml:space="preserve">
     <value>Show window in taskbar.</value>
+  </data>
+  <data name="ShowLoveTooltip" xml:space="preserve">
+    <value>Love the thing, migh even get you a coffee!</value>
+  </data>
+  <data name="TimeLabel" xml:space="preserve">
+    <value>Time</value>
   </data>
   <data name="TitleLabel" xml:space="preserve">
     <value>Date and time</value>

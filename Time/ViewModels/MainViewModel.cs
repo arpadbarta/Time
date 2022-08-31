@@ -1,70 +1,74 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Media;
 using System.Windows.Threading;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Microsoft.AppCenter.Analytics;
 using Time.Services;
 
 namespace Time.ViewModels
 {
     public class MainViewModel : ObservableObject
     {
-        private string _time;
-        private string _date;
         private Color _background;
         private Color _foreground;
         private FontFamily _fontFamily;
-        private string _day;
         private readonly SettingsService _settingService;
         private Settings _settings;
+        private SegmentViewModel _selectedSegment;
 
-        public string Time
-        {
-            get => _time;
-            private set => Set(ref _time, value);
-        }
-
-        public string Date
-        {
-            get => _date;
-            private set => Set(ref _date, value);
-        }
-
-        public string Day
-        {
-            get => _day;
-            set => Set(ref _day, value);
-        }
-        
         public Color Background
         {
             get => _background;
-            set => Set(ref _background, value);
+            set => SetProperty(ref _background, value);
         }
 
         public Color Foreground
         {
             get => _foreground;
-            set => Set(ref _foreground, value);
+            set => SetProperty(ref _foreground, value);
         }
 
         public FontFamily FontFamily
         {
             get => _fontFamily;
-            set => Set(ref _fontFamily, value);
+            set
+            {
+                if (SetProperty(ref _fontFamily, value))
+                {
+                    foreach (var segmentViewModel in Segments)
+                    {
+                        segmentViewModel.Font = FontFamily;
+                    }
+                }
+            }
         }
 
         public FontFamily SystemFontFamily { get; set; }
 
         public IReadOnlyList<Color> DefinedColors { get; }
         public IEnumerable<FontFamily> FontCollection => Fonts.SystemFontFamilies.OrderBy(x => x.ToString());
-        
+
         public Settings Settings
         {
             get => _settings;
 
-            set => Set(ref _settings, value);
+            set => SetProperty(ref _settings, value);
         }
+
+        public object SelectedSegment
+        {
+            get => _selectedSegment;
+            set => SetProperty(ref _selectedSegment, value as SegmentViewModel);
+        }
+
+        public ObservableCollection<SegmentViewModel> Segments { get; }
+
+        public RelayCommand AddSegmentConfigurationCommand { get; }
+        public RelayCommand RemoveSegmentConfigurationCommand { get; }
 
         public MainViewModel()
         {
@@ -73,7 +77,6 @@ namespace Time.ViewModels
             _settingService = new SettingsService();
 
             Settings = _settingService.Load();
-            Settings.Configuration.PropertyChanged += OnConfigurationChanged;
 
             var timer = new DispatcherTimer
             {
@@ -82,15 +85,45 @@ namespace Time.ViewModels
 
             timer.Tick += OnTick;
             timer.Start();
+
+            Segments = new ObservableCollection<SegmentViewModel>();
+
+            AddSegmentConfigurationCommand = new RelayCommand(AddConfigurationSegment);
+            RemoveSegmentConfigurationCommand = new RelayCommand(RemoveConfigurationSegment);
+        }
+
+        private void AddConfigurationSegment()
+        {
+            var selectedIndex = Segments.IndexOf(_selectedSegment) + 1;
+
+            Segments.Insert(selectedIndex, new SegmentViewModel(new SegmentConfiguration()));
+
+            Analytics.TrackEvent("segment-added");
+        }
+
+        private void RemoveConfigurationSegment()
+        {
+            if (_selectedSegment is { } segmentConfigurationViewModel)
+            {
+                _ = Segments.Remove(segmentConfigurationViewModel);
+                SelectedSegment = Segments.FirstOrDefault();
+
+                Analytics.TrackEvent("segment-removed");
+            }
         }
 
         public void Load()
         {
             Settings = _settingService.Load();
 
-            UpdateVisuals();
+            foreach (var segmentConfiguration in Settings.Segments)
+            {
+                Segments.Add(new SegmentViewModel(segmentConfiguration));
+            }
 
-            UpdateDateTime();
+            SelectedSegment = Segments.FirstOrDefault();
+
+            UpdateVisuals();
         }
 
         public void Save()
@@ -99,41 +132,49 @@ namespace Time.ViewModels
             Settings.Visuals.Foreground = Foreground.ToString();
             Settings.Visuals.FontFamily = FontFamily.ToString();
 
+            Settings = _settings with { Segments = Segments.Select(x => x.GetConfiguration()).ToArray() };
+
             _settingService.Save(Settings);
         }
 
         public void ResetSettings()
         {
-            Settings.Configuration.PropertyChanged -= OnConfigurationChanged;
-
             Settings = _settingService.GetDefaults();
 
             UpdateVisuals();
 
-            RaisePropertyChanged();
+            OnPropertyChanged();
 
-            Settings.Configuration.PropertyChanged += OnConfigurationChanged;
+            Segments.Clear();
+
+            foreach (var segmentConfiguration in Settings.Segments)
+            {
+                Segments.Add(new SegmentViewModel(segmentConfiguration));
+            }
+
+            SelectedSegment = Segments.FirstOrDefault();
+
+            Analytics.TrackEvent("settings-reset");
         }
 
         private void UpdateVisuals()
         {
             FontFamily = FontCollection.FirstOrDefault(x => x.ToString() == Settings.Visuals.FontFamily) ?? SystemFontFamily;
+            
             Background = (Color)(ColorConverter.ConvertFromString(Settings.Visuals.Background) ?? Colors.Black);
             Foreground = (Color)(ColorConverter.ConvertFromString(Settings.Visuals.Foreground) ?? Colors.White);
         }
 
-        private void OnTick(object sender, EventArgs e) => UpdateDateTime();
-        
-        private void OnConfigurationChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e) =>
-            UpdateDateTime();
+        private void OnTick(object sender, EventArgs e) => UpdateSegments();
 
-        private void UpdateDateTime()
+        private void UpdateSegments()
         {
-            var now = DateTime.Now;
+            var now = DateTimeOffset.Now;
 
-            Time = _settings.Configuration.IsShortTime ? now.ToShortTimeString() : now.ToLongTimeString();
-            Date = _settings.Configuration.IsShortDate ? now.ToShortDateString() : now.ToLongDateString();
-            Day = now.ToString("dddd"); // TODO: At some point we should really expose configurable formatting
+            foreach (var segment in Segments)
+            {
+                segment.Update(now);
+            }
         }
     }
 }

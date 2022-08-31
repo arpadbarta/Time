@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:Time.ViewModels"
+        xmlns:translations="clr-namespace:Time.Translations"
         mc:Ignorable="d"
         WindowStyle="None"
         Background="Transparent"
@@ -18,14 +19,20 @@
         Cursor="{Binding Settings.Properties.AllowMove, Converter={StaticResource BooleanToMoveCursorConverter}}"
         d:DataContext="{d:DesignInstance {x:Type viewModels:MainViewModel}}">
 
-    <Border CornerRadius="{Binding Settings.Properties.CornerRadius, Converter={StaticResource DoubleToCornerRadiusConverter}}">
-        <Border.Background>
-            <SolidColorBrush Color="{Binding Background}"
-                             Opacity="{Binding Settings.Visuals.Opacity}" />
-        </Border.Background>
+    <Window.Resources>
+        <SolidColorBrush x:Key="BackgroundBrush"
+                         Color="{Binding Background}"
+                         Opacity="{Binding Settings.Visuals.Opacity}" />
+
+        <SolidColorBrush x:Key="ForegroundBrush"
+                         Color="{Binding Foreground}"
+                         Opacity="{Binding Settings.Visuals.FontOpacity}" />
+    </Window.Resources>
+
+    <Border CornerRadius="{Binding Settings.Properties.CornerRadius, Converter={StaticResource DoubleToCornerRadiusConverter}}"
+            Background="{StaticResource BackgroundBrush}">
 
         <Grid>
-
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Right"
                         Height="40"
@@ -34,7 +41,8 @@
                          Visibility="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource BooleanToVisibilityConverter}}"
                          Cursor="Hand"
                          MouseDown="OnDonateMouseDown"
-                         Background="Transparent">
+                         Background="Transparent"
+                         ToolTip="{x:Static translations:Resource.ShowLoveTooltip}">
                     <Path Data="M8.5319849,0C11.560988,7.3866431E-08 14.464015,1.6680007 15.99997,4.5209999 18.139016,0.55099538 22.921994,-1.1230173 27.008008,0.7949839 31.297024,2.8069787 33.185032,8.0069957 31.22604,12.411997 29.27303,16.804 15.998994,30.380001 15.998994,30.380001 15.915985,30.327022 2.7269701,16.804 0.77395964,12.411997 -1.1850933,8.0069957 0.70291448,2.8069787 4.9929701,0.7949839 6.1419612,0.25497467 7.3469826,7.3866431E-08 8.5319849,0z"
                           Stretch="Uniform"
                           Fill="Red" />
@@ -43,7 +51,8 @@
                          Visibility="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource BooleanToVisibilityConverter}}"
                          Cursor="Hand"
                          MouseDown="OnSettingsMouseDown"
-                         Background="Transparent">
+                         Background="Transparent"
+                         ToolTip="{x:Static translations:Resource.SettingsTooltip}">
                     <Path Data="M15.799988,7.9000244C11.400024,7.9000244 7.7999878,11.5 7.7999878,15.900024 7.7999878,20.300018 11.400024,23.900024 15.799988,23.900024 20.200012,23.900024 23.799988,20.300018 23.799988,15.900024 23.799988,11.400024 20.299988,7.9000244 15.799988,7.9000244z M12.600037,0L15.5,4.1000061 16.900024,4.1000061 17.100037,4.1000061 20.100037,0.20001221 24.600037,2.2000122 23.799988,7.1000061 23.900024,7.2000122C24.200012,7.6000061,24.600037,8,25,8.4000244L25.100037,8.6000061 30.200012,7.9000244 32,12.5 27.700012,15.600006 27.700012,17 31.799988,20.100006 29.799988,24.600006 24.700012,23.700012 24.600037,23.800018 23.900024,24.5 23.700012,24.700012 24.400024,30.100006 19.700012,32 16.700012,27.700012 16.5,27.700012 15.200012,27.700012 14.799988,27.700012 11.5,31.900024 7,29.900024 7.9000244,24.700012 7.7999878,24.600006C7.5,24.400024,7.2999878,24.100006,7.1000366,23.900024L6.9000244,23.600006 1.7999878,24.300018 0,19.700012 4,16.800018 4,16.5 4,14.800018 0,11.700012 2,7.2000122 7,8C7.5,7.5,8,7,8.5,6.6000061L8,1.8000183z"
                           Stretch="Uniform"
                           Fill="#FFFFFFFF" />
@@ -52,7 +61,8 @@
                          Visibility="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource BooleanToVisibilityConverter}}"
                          Cursor="Hand"
                          MouseDown="OnCloseMouseDown"
-                         Background="Transparent">
+                         Background="Transparent"
+                         ToolTip="{x:Static translations:Resource.CloseTooltip}">
                     <Path Data="M1.442037,0L16.002031,14.585751 30.588022,0.025996563 32.001024,1.4409965 17.414783,16.001002 31.97503,30.587006 30.560022,32 15.999268,17.413969 1.4130009,31.973999 0,30.558998 14.586494,15.998742 0.027028472,1.4140019z"
                           Stretch="Uniform"
                           Fill="#FFFFFFFF" />
@@ -60,51 +70,10 @@
             </StackPanel>
 
             <Viewbox>
-                <Grid Margin="8">
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                    </Grid.RowDefinitions>
-
-                    <TextBlock Text="{Binding Time}"
-                               FontFamily="{Binding FontFamily}"
-                               FontSize="24"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center">
-                        <TextBlock.Foreground>
-                            <SolidColorBrush Color="{Binding Foreground}"
-                                             Opacity="{Binding Settings.Visuals.FontOpacity}" />
-                        </TextBlock.Foreground>
-                    </TextBlock>
-
-                    <TextBlock Text="{Binding Day}"
-                               Visibility="{Binding Settings.Configuration.ShowDay, Converter={StaticResource BooleanToVisibilityConverter}}"
-                               FontFamily="{Binding FontFamily}"
-                               FontSize="12"
-                               Grid.Row="1"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center">
-                        <TextBlock.Foreground>
-                            <SolidColorBrush Color="{Binding Foreground}"
-                                             Opacity="{Binding Settings.Visuals.FontOpacity}" />
-                        </TextBlock.Foreground>
-                    </TextBlock>
-
-                    <TextBlock Text="{Binding Date}"
-                               Visibility="{Binding Settings.Configuration.ShowDate, Converter={StaticResource BooleanToVisibilityConverter}}"
-                               FontFamily="{Binding FontFamily}"
-                               FontSize="12"
-                               Grid.Row="2"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center">
-                        <TextBlock.Foreground>
-                            <SolidColorBrush Color="{Binding Foreground}"
-                                             Opacity="{Binding Settings.Visuals.FontOpacity}" />
-                        </TextBlock.Foreground>
-                    </TextBlock>
-                </Grid>
+                <ItemsControl ItemsSource="{Binding Segments}"
+                              TextBlock.FontFamily="{Binding FontFamily}"
+                              TextBlock.Foreground="{StaticResource ForegroundBrush}"
+                              Margin="8"/>
             </Viewbox>
         </Grid>
     </Border>
