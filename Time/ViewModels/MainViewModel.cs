@@ -96,7 +96,7 @@ namespace Time.ViewModels
         {
             var selectedIndex = Segments.IndexOf(_selectedSegment) + 1;
 
-            Segments.Insert(selectedIndex, new SegmentViewModel(new SegmentConfiguration()));
+            Segments.Insert(selectedIndex, new SegmentViewModel(new SegmentConfiguration { Font = FontFamily.ToString()}));
 
             Analytics.TrackEvent("segment-added");
         }
