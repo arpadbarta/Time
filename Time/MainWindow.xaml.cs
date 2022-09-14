@@ -32,11 +32,13 @@ namespace Time
         {
             if (e.ChangedButton == MouseButton.Left && _viewModel.Settings.Properties.AllowMove)
             {
+                e.Handled = true;
                 DragMove();
             }
 
             if (e.ChangedButton == MouseButton.Right)
             {
+                e.Handled = true;
                 OpenSettings();
             }
         }
