@@ -191,7 +191,7 @@
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
-                    <ColumnDefinition MaxWidth="320"/>
+                    <ColumnDefinition Width="320"/>
                 </Grid.ColumnDefinitions>
 
                 <Grid Grid.ColumnSpan="2">
@@ -276,12 +276,31 @@
                                 </ComboBox>
 
                                 <StackPanel Visibility="{Binding IsCustom, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                    <TextBlock Text="Custom format" />
+                                    <TextBlock Text="{x:Static translations:Resource.CustomFormatLabel}" />
                                     <TextBox Text="{Binding Format, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                     <TextBlock Text="{x:Static translations:Resource.CustomFormatDescription}"
                                                TextWrapping="Wrap"/>
                                 </StackPanel>
-                                
+
+                                <TextBlock Text="{x:Static translations:Resource.TimeZoneLabel}"/>
+
+                                <ComboBox ItemsSource="{Binding TimeZones}"
+                                          SelectedItem="{Binding SelectedTimeZone}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock>
+                                                <Run Text="{Binding DisplayName, Mode=OneTime}"/>
+                                                <Run Text="{Binding StandardName, Mode=OneTime, StringFormat=({0})}"/>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+
+                                <TextBlock Text="{x:Static translations:Resource.PrefixLabel}"/>
+                                <TextBox Text="{Binding Prefix, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                <TextBlock Text="{x:Static translations:Resource.SuffixLabel}"/>
+                                <TextBox Text="{Binding Suffix, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ContentControl.ContentTemplate>

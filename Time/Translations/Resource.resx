@@ -187,6 +187,9 @@ will result in:
   <data name="LongTimeLabel" xml:space="preserve">
     <value>Long time</value>
   </data>
+  <data name="PrefixLabel" xml:space="preserve">
+    <value>Prefix (text shown before the segment)</value>
+  </data>
   <data name="RemoveSegmentTooltip" xml:space="preserve">
     <value>Removes the currently selected segment.</value>
   </data>
@@ -214,8 +217,14 @@ will result in:
   <data name="ShowLoveTooltip" xml:space="preserve">
     <value>Love the thing, migh even get you a coffee!</value>
   </data>
+  <data name="SuffixLabel" xml:space="preserve">
+    <value>Suffix (text shown after the segment)</value>
+  </data>
   <data name="TimeLabel" xml:space="preserve">
     <value>Time</value>
+  </data>
+  <data name="TimeZoneLabel" xml:space="preserve">
+    <value>Time zone</value>
   </data>
   <data name="TitleLabel" xml:space="preserve">
     <value>Date and time</value>

@@ -169,7 +169,7 @@ namespace Time.ViewModels
 
         private void UpdateSegments()
         {
-            var now = DateTimeOffset.Now;
+            var now = DateTime.Now;
 
             foreach (var segment in Segments)
             {
