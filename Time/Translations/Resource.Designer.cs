@@ -263,6 +263,15 @@ namespace Time.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Prefix (text shown before the segment).
+        /// </summary>
+        public static string PrefixLabel {
+            get {
+                return ResourceManager.GetString("PrefixLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Removes the currently selected segment..
         /// </summary>
         public static string RemoveSegmentTooltip {
@@ -344,11 +353,29 @@ namespace Time.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Suffix (text shown after the segment).
+        /// </summary>
+        public static string SuffixLabel {
+            get {
+                return ResourceManager.GetString("SuffixLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Time.
         /// </summary>
         public static string TimeLabel {
             get {
                 return ResourceManager.GetString("TimeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time zone.
+        /// </summary>
+        public static string TimeZoneLabel {
+            get {
+                return ResourceManager.GetString("TimeZoneLabel", resourceCulture);
             }
         }
         

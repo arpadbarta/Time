@@ -2,9 +2,22 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:viewModels="clr-namespace:Time.ViewModels">
     <DataTemplate DataType="{x:Type viewModels:SegmentViewModel}">
-        <TextBlock Text="{Binding Content}"
-                   FontSize="{Binding Size}"
-                   FontFamily="{Binding Font}"
-                   HorizontalAlignment="Center"/>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+            <TextBlock Text="{Binding Prefix}"
+                       FontSize="{Binding Size}"
+                       FontFamily="{Binding Font}"
+                       HorizontalAlignment="Center"/>
+            
+            <TextBlock Text="{Binding Content}"
+                       FontSize="{Binding Size}"
+                       FontFamily="{Binding Font}"
+                       HorizontalAlignment="Center"/>
+
+            <TextBlock Text="{Binding Suffix}"
+                       FontSize="{Binding Size}"
+                       FontFamily="{Binding Font}"
+                       HorizontalAlignment="Center"/>
+        </StackPanel>
     </DataTemplate>
 </ResourceDictionary>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Data;
 using System.Windows.Media;
@@ -9,16 +10,23 @@ namespace Time.ViewModels
 {
     public record FormatDefinition(string Name, string Group, string Format);
 
+    public record TimeZone(string Id, string DisplayName, string StandardName);
     public record SegmentConfiguration
     {
         public string Format { get; init; } = "t";
         public double Size { get; init; } = 12;
         public string Font { get; init; } = "Segoe UI";
+        public string ZoneId { get; init; } = "local";
+        public string Prefix { get; init; }
+        public string Suffix { get; init; }
     }
 
     public class SegmentViewModel : ObservableObject
     {
         private const string CustomFormat = "custom-format";
+        private const string LocalZone = "local";
+
+        private static readonly FormatDefinition[] _formats;
 
         private string _content;
 
@@ -26,11 +34,27 @@ namespace Time.ViewModels
         private FontFamily _font;
         private string _format;
         private FormatDefinition _selectedFormat;
+        private string _prefix;
+        private string _suffix;
+        private TimeZone _selectedTimeZone;
+        private TimeZoneInfo _selectedTimeZoneInfo;
 
         public string Content
         {
             get => _content;
             private set => SetProperty(ref _content, value);
+        }
+
+        public string Prefix
+        {
+            get => _prefix;
+            set => SetProperty(ref _prefix, value);
+        }
+
+        public string Suffix
+        {
+            get => _suffix;
+            set => SetProperty(ref _suffix, value);
         }
 
         public double Size
@@ -52,7 +76,7 @@ namespace Time.ViewModels
             {
                 if (SetProperty(ref _format, value))
                 {
-                    Update(DateTimeOffset.Now);
+                    Update(DateTime.Now);
                 }
             }
         }
@@ -78,13 +102,33 @@ namespace Time.ViewModels
 
         public bool IsCustom => _selectedFormat?.Format == CustomFormat;
 
-        public SegmentViewModel(SegmentConfiguration configuration)
-        {
-            _size = configuration.Size;
-            _format = configuration.Format;
-            _font = new FontFamily(configuration.Font);
+        public IReadOnlyCollection<TimeZone> TimeZones { get; }
 
-            var formats = new[]
+        public TimeZone SelectedTimeZone
+        {
+            get => _selectedTimeZone;
+            set => SetProperty(_selectedTimeZone, value, OnTimeZoneChanged);
+        }
+
+        private void OnTimeZoneChanged(TimeZone zone)
+        {
+            _selectedTimeZone = zone ?? TimeZones.First(x => x.Id == LocalZone);
+
+            if (_selectedTimeZone.Id == LocalZone)
+            {
+                _selectedTimeZoneInfo = TimeZoneInfo.Local;
+            }
+            else
+            {
+                _selectedTimeZoneInfo = TimeZoneInfo.GetSystemTimeZones().FirstOrDefault(x => x.Id == _selectedTimeZone.Id) ?? TimeZoneInfo.Local;
+            }
+
+            Update(DateTime.Now);
+        }
+
+        static SegmentViewModel()
+        {
+            _formats = new[]
             {
                 new FormatDefinition(Resource.ShortTimeLabel, Resource.TimeLabel, "t"),
                 new FormatDefinition(Resource.LongTimeLabel, Resource.TimeLabel, "T"),
@@ -94,20 +138,36 @@ namespace Time.ViewModels
                 new FormatDefinition(Resource.LongDateLabel, Resource.DateLabel, "D"),
                 new FormatDefinition(Resource.CustomFormatLabel, Resource.CustomFormatLabel, CustomFormat),
             };
-
-            Formats = new ListCollectionView(formats);
-            Formats?.GroupDescriptions?.Add(new PropertyGroupDescription(nameof(FormatDefinition.Group)));
-
-            SelectedFormat = formats.FirstOrDefault(x => x.Format == configuration.Format) ?? formats.FirstOrDefault(x => x.Format == CustomFormat);
         }
 
-        public void Update(DateTimeOffset dateTimeOffset)
+        public SegmentViewModel(SegmentConfiguration configuration)
         {
-            ArgumentNullException.ThrowIfNull(dateTimeOffset);
+            _size = configuration.Size;
+            _format = configuration.Format;
+            _font = new FontFamily(configuration.Font);
+            _prefix = configuration.Prefix;
+            _suffix = configuration.Suffix;
+
+            Formats = new ListCollectionView(_formats);
+            Formats?.GroupDescriptions?.Add(new PropertyGroupDescription(nameof(FormatDefinition.Group)));
+
+            TimeZones = TimeZoneInfo.GetSystemTimeZones()
+                .Select(x => new TimeZone(x.Id, x.DisplayName, x.StandardName))
+                .Prepend(new TimeZone(LocalZone, "Local", "System defined time zone"))
+                .ToArray();
+
+            SelectedTimeZone = TimeZones.FirstOrDefault(x => x.Id == configuration.ZoneId);
+
+            SelectedFormat = _formats.FirstOrDefault(x => x.Format == configuration.Format) ?? _formats.FirstOrDefault(x => x.Format == CustomFormat);
+        }
+
+        public void Update(DateTime dateTime)
+        {
+            ArgumentNullException.ThrowIfNull(dateTime);
 
             try
             {
-                Content = dateTimeOffset.ToString(Format);
+                Content = TimeZoneInfo.ConvertTime(dateTime, _selectedTimeZoneInfo).ToString(Format);
             }
             catch (Exception)
             {
@@ -119,7 +179,10 @@ namespace Time.ViewModels
         {
             Size = _size,
             Font = _font.ToString(),
-            Format = _format
+            Format = _format,
+            ZoneId = _selectedTimeZone.Id,
+            Prefix = _prefix,
+            Suffix = _suffix
         };
     }
 }
