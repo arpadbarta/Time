@@ -211,6 +211,9 @@ will result in:
   <data name="ShortTimeLabel" xml:space="preserve">
     <value>Short time</value>
   </data>
+  <data name="ShowButtonsLabel" xml:space="preserve">
+    <value>Show the control buttons</value>
+  </data>
   <data name="ShowInTaskbarLabel" xml:space="preserve">
     <value>Show window in taskbar.</value>
   </data>

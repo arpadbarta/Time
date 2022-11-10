@@ -13,6 +13,7 @@ namespace Time.ViewModels
         private bool _showInTaskbar;
         private double _cornerRadius;
         private bool _allowMove;
+        private bool _showButtons;
 
         public double Width
         {
@@ -68,6 +69,12 @@ namespace Time.ViewModels
             set => SetProperty(ref _cornerRadius, value);
         }
 
+        public bool ShowButtons
+        {
+            get => _showButtons;
+            set => SetProperty(ref _showButtons, value);
+        }
+
         public WindowProperties()
         {
             Top = 150;
@@ -78,6 +85,7 @@ namespace Time.ViewModels
             AllowResize = true;
             ShowInTaskbar = true;
             AllowMove = true;
+            ShowButtons = true;
         }
     }
 }

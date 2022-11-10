@@ -83,11 +83,5 @@ namespace Time
             _viewModel.Save();
             Application.Current.Shutdown();
         }
-
-        private void OnDonateMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            _ = Process.Start(new ProcessStartInfo("https://www.buymeacoffee.com/arpad.barta") { UseShellExecute = true });
-            e.Handled = true;
-        }
     }
 }

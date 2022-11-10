@@ -36,11 +36,11 @@
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Right"
                         Height="40"
-                        VerticalAlignment="Top">
+                        VerticalAlignment="Top"
+                        Visibility="{Binding Settings.Properties.ShowButtons, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Border  Margin="8"
                          Visibility="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource BooleanToVisibilityConverter}}"
                          Cursor="Hand"
-                         MouseDown="OnDonateMouseDown"
                          Background="Transparent"
                          ToolTip="{x:Static translations:Resource.ShowLoveTooltip}">
                     <Path Data="M8.5319849,0C11.560988,7.3866431E-08 14.464015,1.6680007 15.99997,4.5209999 18.139016,0.55099538 22.921994,-1.1230173 27.008008,0.7949839 31.297024,2.8069787 33.185032,8.0069957 31.22604,12.411997 29.27303,16.804 15.998994,30.380001 15.998994,30.380001 15.915985,30.327022 2.7269701,16.804 0.77395964,12.411997 -1.1850933,8.0069957 0.70291448,2.8069787 4.9929701,0.7949839 6.1419612,0.25497467 7.3469826,7.3866431E-08 8.5319849,0z"

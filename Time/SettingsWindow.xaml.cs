@@ -22,10 +22,10 @@ namespace Time
         }
         private void OnCloseMouseDown(object sender, RoutedEventArgs e)
         {
+            (DataContext as MainViewModel)?.Save();
+
             Close();
             Analytics.TrackEvent("settings-closed");
         }
-
-        private void ResetSettings(object sender, RoutedEventArgs e) => (DataContext as MainViewModel)?.ResetSettings();
     }
 }

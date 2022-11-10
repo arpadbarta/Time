@@ -335,6 +335,15 @@ namespace Time.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show the control buttons.
+        /// </summary>
+        public static string ShowButtonsLabel {
+            get {
+                return ResourceManager.GetString("ShowButtonsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show window in taskbar..
         /// </summary>
         public static string ShowInTaskbarLabel {
