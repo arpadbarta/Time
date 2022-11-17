@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Media;
 using System.Windows.Threading;
@@ -67,6 +68,8 @@ namespace Time.ViewModels
 
         public ObservableCollection<SegmentViewModel> Segments { get; }
 
+        public RelayCommand DonateCommand { get; }
+        public RelayCommand ResetSettingsCommand { get; }
         public RelayCommand AddSegmentConfigurationCommand { get; }
         public RelayCommand RemoveSegmentConfigurationCommand { get; }
 
@@ -88,6 +91,8 @@ namespace Time.ViewModels
 
             Segments = new ObservableCollection<SegmentViewModel>();
 
+            DonateCommand = new RelayCommand(Donate);
+            ResetSettingsCommand = new RelayCommand(ResetSettings);
             AddSegmentConfigurationCommand = new RelayCommand(AddConfigurationSegment);
             RemoveSegmentConfigurationCommand = new RelayCommand(RemoveConfigurationSegment);
         }
@@ -176,5 +181,7 @@ namespace Time.ViewModels
                 segment.Update(now);
             }
         }
+
+        private void Donate() => _ = Process.Start(new ProcessStartInfo("https://www.buymeacoffee.com/arpad.barta") { UseShellExecute = true });
     }
 }
