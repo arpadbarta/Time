@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Text.Json;
+using System.Threading;
+using Microsoft.AppCenter.Crashes;
 using Time.ViewModels;
 
 namespace Time.Services
@@ -11,19 +13,35 @@ namespace Time.Services
     {
         private readonly string _settingsFilePath;
         private readonly string _applicationDataFolderPath;
+        private readonly Mutex _mutex;
 
         public SettingsService()
         {
             _applicationDataFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), Path.GetFileNameWithoutExtension(Environment.ProcessPath) ?? "Time");
 
             _settingsFilePath = Path.Combine(_applicationDataFolderPath, "Settings.json");
+
+            _mutex = new Mutex(false, "date-time-settings-service");
         }
 
         public void Save(Settings settings)
         {
-            _ = Directory.CreateDirectory(_applicationDataFolderPath); // Assure that we do have our directory
+            try
+            {
+                _ = _mutex.WaitOne();
 
-            File.WriteAllText(_settingsFilePath, JsonSerializer.Serialize(settings));
+                _ = Directory.CreateDirectory(_applicationDataFolderPath); // Assure that we do have our directory
+
+                File.WriteAllText(_settingsFilePath, JsonSerializer.Serialize(settings));
+            }
+            catch (Exception e)
+            {
+                Crashes.TrackError(e);
+            }
+            finally
+            {
+                _mutex.ReleaseMutex();
+            }
         }
 
         public Settings Load()
@@ -36,9 +54,9 @@ namespace Time.Services
                 {
                     settings = JsonSerializer.Deserialize<Settings>(File.ReadAllText(_settingsFilePath));
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    // Yeah nah
+                    Crashes.TrackError(e);
                 }
             }
 
