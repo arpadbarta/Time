@@ -4,6 +4,8 @@ using System.Linq;
 using System.Windows.Data;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Time.Services;
 using Time.Translations;
 
 namespace Time.ViewModels
@@ -110,21 +112,7 @@ namespace Time.ViewModels
             set => SetProperty(_selectedTimeZone, value, OnTimeZoneChanged);
         }
 
-        private void OnTimeZoneChanged(TimeZone zone)
-        {
-            _selectedTimeZone = zone ?? TimeZones.First(x => x.Id == LocalZone);
-
-            if (_selectedTimeZone.Id == LocalZone)
-            {
-                _selectedTimeZoneInfo = TimeZoneInfo.Local;
-            }
-            else
-            {
-                _selectedTimeZoneInfo = TimeZoneInfo.GetSystemTimeZones().FirstOrDefault(x => x.Id == _selectedTimeZone.Id) ?? TimeZoneInfo.Local;
-            }
-
-            Update(DateTime.Now);
-        }
+        public RelayCommand OpenDocsCommand { get; }
 
         static SegmentViewModel()
         {
@@ -159,7 +147,11 @@ namespace Time.ViewModels
             SelectedTimeZone = TimeZones.FirstOrDefault(x => x.Id == configuration.ZoneId);
 
             SelectedFormat = _formats.FirstOrDefault(x => x.Format == configuration.Format) ?? _formats.FirstOrDefault(x => x.Format == CustomFormat);
+
+            OpenDocsCommand = new RelayCommand(() => ProcessService.Open(Links.DateTimeDocs));
         }
+
+        
 
         public void Update(DateTime dateTime)
         {
@@ -184,5 +176,21 @@ namespace Time.ViewModels
             Prefix = _prefix,
             Suffix = _suffix
         };
+
+        private void OnTimeZoneChanged(TimeZone zone)
+        {
+            _selectedTimeZone = zone ?? TimeZones.First(x => x.Id == LocalZone);
+
+            if (_selectedTimeZone.Id == LocalZone)
+            {
+                _selectedTimeZoneInfo = TimeZoneInfo.Local;
+            }
+            else
+            {
+                _selectedTimeZoneInfo = TimeZoneInfo.GetSystemTimeZones().FirstOrDefault(x => x.Id == _selectedTimeZone.Id) ?? TimeZoneInfo.Local;
+            }
+
+            Update(DateTime.Now);
+        }
     }
 }

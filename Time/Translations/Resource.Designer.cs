@@ -173,6 +173,15 @@ namespace Time.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Learn more about formatting.
+        /// </summary>
+        public static string CustomFormattingDocsLabel {
+            get {
+                return ResourceManager.GetString("CustomFormattingDocsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date.
         /// </summary>
         public static string DateLabel {
@@ -232,6 +241,15 @@ namespace Time.Translations {
         public static string FormatLabel {
             get {
                 return ResourceManager.GetString("FormatLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show me the code..
+        /// </summary>
+        public static string GithubLabel {
+            get {
+                return ResourceManager.GetString("GithubLabel", resourceCulture);
             }
         }
         

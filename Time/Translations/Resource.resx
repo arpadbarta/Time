@@ -157,6 +157,9 @@ will result in:
   <data name="CustomFormatLabel" xml:space="preserve">
     <value>Custom format</value>
   </data>
+  <data name="CustomFormattingDocsLabel" xml:space="preserve">
+    <value>Learn more about formatting</value>
+  </data>
   <data name="DateLabel" xml:space="preserve">
     <value>Date</value>
   </data>
@@ -177,6 +180,9 @@ will result in:
   </data>
   <data name="FormatLabel" xml:space="preserve">
     <value>Format</value>
+  </data>
+  <data name="GithubLabel" xml:space="preserve">
+    <value>Show me the code.</value>
   </data>
   <data name="LongDateLabel" xml:space="preserve">
     <value>Long date</value>

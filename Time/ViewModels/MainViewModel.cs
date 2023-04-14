@@ -69,6 +69,8 @@ namespace Time.ViewModels
         public ObservableCollection<SegmentViewModel> Segments { get; }
 
         public RelayCommand DonateCommand { get; }
+        public RelayCommand DocsCommand { get; }
+        public RelayCommand GithubCommand { get; }
         public RelayCommand ResetSettingsCommand { get; }
         public RelayCommand AddSegmentConfigurationCommand { get; }
         public RelayCommand RemoveSegmentConfigurationCommand { get; }
@@ -91,7 +93,9 @@ namespace Time.ViewModels
 
             Segments = new ObservableCollection<SegmentViewModel>();
 
-            DonateCommand = new RelayCommand(Donate);
+            DonateCommand = new RelayCommand(() => ProcessService.Open(Links.Coffee));
+            GithubCommand = new RelayCommand(() => ProcessService.Open(Links.Github));
+            DocsCommand = new RelayCommand(() => ProcessService.Open(Links.DateTimeDocs));
             ResetSettingsCommand = new RelayCommand(ResetSettings);
             AddSegmentConfigurationCommand = new RelayCommand(AddConfigurationSegment);
             RemoveSegmentConfigurationCommand = new RelayCommand(RemoveConfigurationSegment);
