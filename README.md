@@ -19,6 +19,6 @@
 
 
 <p align="center">
-    <img  align="center" src="sample/demo.gif" >
+    <img  align="center" src="sample/screenshot.png" >
 </p>
 
