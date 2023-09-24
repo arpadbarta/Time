@@ -26,6 +26,7 @@ namespace Time.ViewModels
     public class SegmentViewModel : ObservableObject
     {
         private const string CustomFormat = "custom-format";
+        private const string TextOnly = "text-only";
         private const string LocalZone = "local";
 
         private static readonly FormatDefinition[] _formats;
@@ -125,6 +126,7 @@ namespace Time.ViewModels
                 new FormatDefinition(Resource.ShortDateLabel, Resource.DateLabel, "d"),
                 new FormatDefinition(Resource.LongDateLabel, Resource.DateLabel, "D"),
                 new FormatDefinition(Resource.CustomFormatLabel, Resource.CustomFormatLabel, CustomFormat),
+                new FormatDefinition(Resource.TextOnlyFormatLabel, Resource.CustomFormatLabel, TextOnly),
             };
         }
 
@@ -156,6 +158,13 @@ namespace Time.ViewModels
         public void Update(DateTime dateTime)
         {
             ArgumentNullException.ThrowIfNull(dateTime);
+
+            if (Format == TextOnly)
+            {
+                Content = string.Empty;
+
+                return;
+            }
 
             try
             {

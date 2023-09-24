@@ -328,10 +328,12 @@
                                 </ComboBox>
 
                                 <TextBlock Text="{x:Static translations:Resource.PrefixLabel}"/>
-                                <TextBox Text="{Binding Prefix, UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBox Text="{Binding Prefix, UpdateSourceTrigger=PropertyChanged}"
+                                         AcceptsReturn="True"/>
 
                                 <TextBlock Text="{x:Static translations:Resource.SuffixLabel}"/>
-                                <TextBox Text="{Binding Suffix, UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBox Text="{Binding Suffix, UpdateSourceTrigger=PropertyChanged}"
+                                         AcceptsReturn="True"/>
                             </StackPanel>
                         </DataTemplate>
                     </ContentControl.ContentTemplate>

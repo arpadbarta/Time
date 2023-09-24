@@ -229,6 +229,9 @@ will result in:
   <data name="SuffixLabel" xml:space="preserve">
     <value>Suffix (text shown after the segment)</value>
   </data>
+  <data name="TextOnlyFormatLabel" xml:space="preserve">
+    <value>Text only</value>
+  </data>
   <data name="TimeLabel" xml:space="preserve">
     <value>Time</value>
   </data>

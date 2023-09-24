@@ -389,6 +389,15 @@ namespace Time.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Text only.
+        /// </summary>
+        public static string TextOnlyFormatLabel {
+            get {
+                return ResourceManager.GetString("TextOnlyFormatLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Time.
         /// </summary>
         public static string TimeLabel {
