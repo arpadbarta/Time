@@ -13,6 +13,7 @@ namespace Time.ViewModels
     public record FormatDefinition(string Name, string Group, string Format);
 
     public record TimeZone(string Id, string DisplayName, string StandardName);
+
     public record SegmentConfiguration
     {
         public string Format { get; init; } = "t";
@@ -25,9 +26,9 @@ namespace Time.ViewModels
 
     public class SegmentViewModel : ObservableObject
     {
-        private const string CustomFormat = "custom-format";
-        private const string TextOnly = "text-only";
-        private const string LocalZone = "local";
+        private const string CUSTOM_FORMAT = "custom-format";
+        private const string TEXT_ONLY = "text-only";
+        private const string LOCAL_ZONE = "local";
 
         private static readonly FormatDefinition[] _formats;
 
@@ -95,7 +96,7 @@ namespace Time.ViewModels
                 {
                     OnPropertyChanged(nameof(IsCustom));
 
-                    if (_selectedFormat?.Format != CustomFormat)
+                    if (_selectedFormat?.Format != CUSTOM_FORMAT)
                     {
                         Format = _selectedFormat?.Format;
                     }
@@ -103,7 +104,7 @@ namespace Time.ViewModels
             }
         }
 
-        public bool IsCustom => _selectedFormat?.Format == CustomFormat;
+        public bool IsCustom => _selectedFormat?.Format == CUSTOM_FORMAT;
 
         public IReadOnlyCollection<TimeZone> TimeZones { get; }
 
@@ -125,8 +126,8 @@ namespace Time.ViewModels
                 new FormatDefinition(Resource.LongDayLabel, Resource.DayLabel, "dddd"),
                 new FormatDefinition(Resource.ShortDateLabel, Resource.DateLabel, "d"),
                 new FormatDefinition(Resource.LongDateLabel, Resource.DateLabel, "D"),
-                new FormatDefinition(Resource.CustomFormatLabel, Resource.CustomFormatLabel, CustomFormat),
-                new FormatDefinition(Resource.TextOnlyFormatLabel, Resource.CustomFormatLabel, TextOnly),
+                new FormatDefinition(Resource.CustomFormatLabel, Resource.CustomFormatLabel, CUSTOM_FORMAT),
+                new FormatDefinition(Resource.TextOnlyFormatLabel, Resource.CustomFormatLabel, TEXT_ONLY),
             };
         }
 
@@ -143,23 +144,21 @@ namespace Time.ViewModels
 
             TimeZones = TimeZoneInfo.GetSystemTimeZones()
                 .Select(x => new TimeZone(x.Id, x.DisplayName, x.StandardName))
-                .Prepend(new TimeZone(LocalZone, "Local", "System defined time zone"))
+                .Prepend(new TimeZone(LOCAL_ZONE, "Local", "System defined time zone"))
                 .ToArray();
 
             SelectedTimeZone = TimeZones.FirstOrDefault(x => x.Id == configuration.ZoneId);
 
-            SelectedFormat = _formats.FirstOrDefault(x => x.Format == configuration.Format) ?? _formats.FirstOrDefault(x => x.Format == CustomFormat);
+            SelectedFormat = _formats.FirstOrDefault(x => x.Format == configuration.Format) ?? _formats.FirstOrDefault(x => x.Format == CUSTOM_FORMAT);
 
             OpenDocsCommand = new RelayCommand(() => ProcessService.Open(Links.DateTimeDocs));
         }
-
-        
 
         public void Update(DateTime dateTime)
         {
             ArgumentNullException.ThrowIfNull(dateTime);
 
-            if (Format == TextOnly)
+            if (Format == TEXT_ONLY)
             {
                 Content = string.Empty;
 
@@ -188,9 +187,9 @@ namespace Time.ViewModels
 
         private void OnTimeZoneChanged(TimeZone zone)
         {
-            _selectedTimeZone = zone ?? TimeZones.First(x => x.Id == LocalZone);
+            _selectedTimeZone = zone ?? TimeZones.First(x => x.Id == LOCAL_ZONE);
 
-            if (_selectedTimeZone.Id == LocalZone)
+            if (_selectedTimeZone.Id == LOCAL_ZONE)
             {
                 _selectedTimeZoneInfo = TimeZoneInfo.Local;
             }

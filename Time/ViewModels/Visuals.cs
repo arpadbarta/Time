@@ -1,55 +1,56 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace Time.ViewModels;
-
-public class Visuals : ObservableObject
+namespace Time.ViewModels
 {
-    private string _foreground;
-    private string _background;
-    private string _fontFamily;
-    private double _opacity;
-    private bool _applyOpacityToFont;
-
-    public string Foreground
+    public class Visuals : ObservableObject
     {
-        get => _foreground;
-        set => SetProperty(ref _foreground, value);
-    }
+        private string _foreground;
+        private string _background;
+        private string _fontFamily;
+        private double _opacity;
+        private bool _applyOpacityToFont;
 
-    public string Background
-    {
-        get => _background;
-        set => SetProperty(ref _background, value);
-    }
-
-    public string FontFamily
-    {
-        get => _fontFamily;
-        set => SetProperty(ref _fontFamily, value);
-    }
-
-    public double Opacity
-    {
-        get => _opacity;
-        set
+        public string Foreground
         {
-            if (SetProperty(ref _opacity, value))
+            get => _foreground;
+            set => SetProperty(ref _foreground, value);
+        }
+
+        public string Background
+        {
+            get => _background;
+            set => SetProperty(ref _background, value);
+        }
+
+        public string FontFamily
+        {
+            get => _fontFamily;
+            set => SetProperty(ref _fontFamily, value);
+        }
+
+        public double Opacity
+        {
+            get => _opacity;
+            set
             {
-                OnPropertyChanged(nameof(FontOpacity));
+                if (SetProperty(ref _opacity, value))
+                {
+                    OnPropertyChanged(nameof(FontOpacity));
+                }
             }
         }
-    }
 
-    public double FontOpacity => _applyOpacityToFont ? _opacity : 1;
+        public double FontOpacity => _applyOpacityToFont ? _opacity : 1;
 
-    public bool ApplyOpacityToFont
-    {
-        get => _applyOpacityToFont;
-        set
+        public bool ApplyOpacityToFont
         {
-            if (SetProperty(ref _applyOpacityToFont, value))
+            get => _applyOpacityToFont;
+            set
             {
-                OnPropertyChanged(nameof(FontOpacity));
+                if (SetProperty(ref _applyOpacityToFont, value))
+                {
+                    OnPropertyChanged(nameof(FontOpacity));
+                }
             }
         }
     }
