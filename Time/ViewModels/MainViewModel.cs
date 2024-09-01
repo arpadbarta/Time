@@ -105,7 +105,7 @@ namespace Time.ViewModels
         {
             var selectedIndex = Segments.IndexOf(_selectedSegment) + 1;
 
-            Segments.Insert(selectedIndex, new SegmentViewModel(new SegmentConfiguration { Font = FontFamily.ToString()}));
+            Segments.Insert(selectedIndex, new SegmentViewModel(new SegmentConfiguration { Font = FontFamily.ToString() }));
 
             Analytics.TrackEvent("segment-added");
         }
@@ -169,7 +169,7 @@ namespace Time.ViewModels
         private void UpdateVisuals()
         {
             FontFamily = FontCollection.FirstOrDefault(x => x.ToString() == Settings.Visuals.FontFamily) ?? SystemFontFamily;
-            
+
             Background = (Color)(ColorConverter.ConvertFromString(Settings.Visuals.Background) ?? Colors.Black);
             Foreground = (Color)(ColorConverter.ConvertFromString(Settings.Visuals.Foreground) ?? Colors.White);
         }

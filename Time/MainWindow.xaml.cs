@@ -1,5 +1,4 @@
 ﻿using Microsoft.AppCenter.Analytics;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -14,7 +13,7 @@ namespace Time
         public MainWindow()
         {
             InitializeComponent();
-            
+
             _viewModel = new MainViewModel
             {
                 SystemFontFamily = FontFamily
@@ -27,7 +26,7 @@ namespace Time
             MouseDown += OnMouseDown;
             Closing += OnClosing;
         }
-        
+
         private void OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left && _viewModel.Settings.Properties.AllowMove)
@@ -42,7 +41,7 @@ namespace Time
                 OpenSettings();
             }
         }
-        
+
         private void OnSettingsMouseDown(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;

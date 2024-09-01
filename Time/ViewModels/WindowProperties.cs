@@ -20,19 +20,19 @@ namespace Time.ViewModels
             get => _width;
             set => SetProperty(ref _width, value);
         }
-        
+
         public double Height
         {
             get => _height;
             set => SetProperty(ref _height, value);
         }
-        
+
         public double Top
         {
             get => _top;
             set => SetProperty(ref _top, value);
         }
-        
+
         public double Left
         {
             get => _left;
