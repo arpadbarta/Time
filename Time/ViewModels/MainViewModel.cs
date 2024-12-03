@@ -7,7 +7,6 @@ using System.Windows.Media;
 using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.AppCenter.Analytics;
 using Time.Services;
 
 namespace Time.ViewModels
@@ -60,10 +59,10 @@ namespace Time.ViewModels
             set => SetProperty(ref _settings, value);
         }
 
-        public object SelectedSegment
+        public SegmentViewModel SelectedSegment
         {
             get => _selectedSegment;
-            set => SetProperty(ref _selectedSegment, value as SegmentViewModel);
+            set => SetProperty(ref _selectedSegment, value);
         }
 
         public ObservableCollection<SegmentViewModel> Segments { get; }
@@ -107,7 +106,7 @@ namespace Time.ViewModels
 
             Segments.Insert(selectedIndex, new SegmentViewModel(new SegmentConfiguration { Font = FontFamily.ToString() }));
 
-            Analytics.TrackEvent("segment-added");
+            //Analytics.TrackEvent("segment-added");
         }
 
         private void RemoveConfigurationSegment()
@@ -117,7 +116,7 @@ namespace Time.ViewModels
                 _ = Segments.Remove(segmentConfigurationViewModel);
                 SelectedSegment = Segments.FirstOrDefault();
 
-                Analytics.TrackEvent("segment-removed");
+                //Analytics.TrackEvent("segment-removed");
             }
         }
 
@@ -163,7 +162,7 @@ namespace Time.ViewModels
 
             SelectedSegment = Segments.FirstOrDefault();
 
-            Analytics.TrackEvent("settings-reset");
+            //Analytics.TrackEvent("settings-reset");
         }
 
         private void UpdateVisuals()

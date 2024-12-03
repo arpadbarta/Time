@@ -85,7 +85,7 @@ namespace Time.ViewModels
             }
         }
 
-        public ListCollectionView Formats { get; }
+        public IReadOnlyList<FormatDefinition> Formats { get; }
 
         public FormatDefinition SelectedFormat
         {
@@ -118,8 +118,8 @@ namespace Time.ViewModels
 
         static SegmentViewModel()
         {
-            _formats = new[]
-            {
+            _formats =
+            [
                 new FormatDefinition(Resource.ShortTimeLabel, Resource.TimeLabel, "t"),
                 new FormatDefinition(Resource.LongTimeLabel, Resource.TimeLabel, "T"),
                 new FormatDefinition(Resource.ShortDayLabel, Resource.DayLabel, "ddd"),
@@ -127,8 +127,8 @@ namespace Time.ViewModels
                 new FormatDefinition(Resource.ShortDateLabel, Resource.DateLabel, "d"),
                 new FormatDefinition(Resource.LongDateLabel, Resource.DateLabel, "D"),
                 new FormatDefinition(Resource.CustomFormatLabel, Resource.CustomFormatLabel, CUSTOM_FORMAT),
-                new FormatDefinition(Resource.TextOnlyFormatLabel, Resource.CustomFormatLabel, TEXT_ONLY),
-            };
+                new FormatDefinition(Resource.TextOnlyFormatLabel, Resource.CustomFormatLabel, TEXT_ONLY)
+            ];
         }
 
         public SegmentViewModel(SegmentConfiguration configuration)
@@ -139,8 +139,7 @@ namespace Time.ViewModels
             _prefix = configuration.Prefix;
             _suffix = configuration.Suffix;
 
-            Formats = new ListCollectionView(_formats);
-            Formats?.GroupDescriptions?.Add(new PropertyGroupDescription(nameof(FormatDefinition.Group)));
+            Formats = _formats;
 
             TimeZones = TimeZoneInfo.GetSystemTimeZones()
                 .Select(x => new TimeZone(x.Id, x.DisplayName, x.StandardName))
@@ -156,8 +155,6 @@ namespace Time.ViewModels
 
         public void Update(DateTime dateTime)
         {
-            ArgumentNullException.ThrowIfNull(dateTime);
-
             if (Format == TEXT_ONLY)
             {
                 Content = string.Empty;
