@@ -10,7 +10,7 @@
 		<Company>AB Dev</Company>
 		<Description>Just shows the time and date. That is all.</Description>
 		<Platforms>x86;x64</Platforms>
-		<Version>2.4.0.0</Version>
+		<Version>3.0.0.0</Version>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 		<FileVersion>$(Version)</FileVersion>
 	</PropertyGroup>
