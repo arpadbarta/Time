@@ -1,5 +1,4 @@
-﻿using Microsoft.AppCenter.Analytics;
-using System.Linq;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using Time.ViewModels;
@@ -71,8 +70,6 @@ namespace Time
 
                 settingsWindow.Show();
             }
-
-            Analytics.TrackEvent("settings-opened");
         }
 
         private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e) => _viewModel.Save();

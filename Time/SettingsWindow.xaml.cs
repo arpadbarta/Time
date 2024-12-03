@@ -1,31 +1,10 @@
-﻿using Microsoft.AppCenter.Analytics;
-using System.Windows;
-using System.Windows.Input;
-using Time.ViewModels;
-
-namespace Time
+﻿namespace Time
 {
-    public partial class SettingsWindow : Window
+    public partial class SettingsWindow
     {
         public SettingsWindow()
         {
             InitializeComponent();
-            MouseDown += OnMouseDown;
-        }
-
-        private void OnMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                DragMove();
-            }
-        }
-        private void OnCloseMouseDown(object sender, RoutedEventArgs e)
-        {
-            (DataContext as MainViewModel)?.Save();
-
-            Close();
-            Analytics.TrackEvent("settings-closed");
         }
     }
 }

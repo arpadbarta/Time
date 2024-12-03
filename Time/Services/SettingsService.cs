@@ -2,7 +2,6 @@
 using System.IO;
 using System.Text.Json;
 using System.Threading;
-using Microsoft.AppCenter.Crashes;
 using Time.ViewModels;
 
 namespace Time.Services
@@ -36,7 +35,7 @@ namespace Time.Services
             }
             catch (Exception e)
             {
-                Crashes.TrackError(e);
+                //Crashes.TrackError(e);
             }
             finally
             {
@@ -56,7 +55,7 @@ namespace Time.Services
                 }
                 catch (Exception e)
                 {
-                    Crashes.TrackError(e);
+                    //Crashes.TrackError(e);
                 }
             }
 

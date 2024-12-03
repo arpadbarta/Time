@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using Microsoft.AppCenter.Analytics;
 
 namespace Time.Services
 {
@@ -9,8 +8,6 @@ namespace Time.Services
     {
         public static void Open(UrlDefinition definition)
         {
-            Analytics.TrackEvent($"opened-{definition.Name}");
-
             _ = Process.Start(new ProcessStartInfo(definition.Path) { UseShellExecute = true });
         }
     }

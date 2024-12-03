@@ -1,7 +1,4 @@
 ﻿using System.Windows;
-using Microsoft.AppCenter;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
 using Time.ViewModels;
 
 namespace Time
@@ -12,8 +9,6 @@ namespace Time
         {
             Exit += OnExit;
             SessionEnding += OnSessionEnding;
-
-            AppCenter.Start("xxx", typeof(Analytics), typeof(Crashes));
         }
 
         private void OnSessionEnding(object sender, SessionEndingCancelEventArgs e) => SaveWindowSettings();
