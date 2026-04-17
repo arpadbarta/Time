@@ -164,6 +164,16 @@ namespace Time.ViewModels
 
             //Analytics.TrackEvent("settings-reset");
         }
+        
+        private void SaveSegments()
+        {
+            Settings = Settings with
+            {
+                Segments = Segments.Select(s => s.GetConfiguration()).ToArray()
+            };
+
+            _settingService.Save(Settings);
+        }
 
         private void UpdateVisuals()
         {
