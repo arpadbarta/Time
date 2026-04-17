@@ -107,6 +107,7 @@ namespace Time.ViewModels
             Segments.Insert(selectedIndex, new SegmentViewModel(new SegmentConfiguration { Font = FontFamily.ToString() }));
 
             //Analytics.TrackEvent("segment-added");
+            SaveSegments();
         }
 
         private void RemoveConfigurationSegment()
