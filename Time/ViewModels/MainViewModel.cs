@@ -117,6 +117,7 @@ namespace Time.ViewModels
                 SelectedSegment = Segments.FirstOrDefault();
 
                 //Analytics.TrackEvent("segment-removed");
+                SaveSegments();   // 新增
             }
         }
 
